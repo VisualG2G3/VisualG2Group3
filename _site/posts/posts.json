@@ -13,24 +13,24 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-06-13T14:22:42+08:00",
+    "last_modified": "2021-06-13T16:08:38+08:00",
     "input_file": {}
   },
   {
-    "path": "posts/2021-06-13-new/",
-    "title": "new",
-    "description": "A short description of the post.",
+    "path": "posts/2021-06-13-proposal/",
+    "title": "Proposal",
+    "description": "VAST Challenge 2021 Mini Challenge 2.",
     "author": [
       {
-        "name": "Nora Jones",
+        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
         "url": "https://example.com/norajones"
       }
     ],
     "date": "2021-06-13",
     "categories": [],
-    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "contents": "\r\n1. Background\r\nThe IEEE Visual Analytics Science and Technology (VAST) Challenge is an annual contest with the goal of advancing the field of visual analytics through competition. The VAST Challenge is designed to help researchers understand how their software would be used in a novel analytic task and determine if their data transformations, visualizations, and interactions would be beneficial for particular analytic tasks. VAST Challenge 2021 is the so-called Kronos Incident in which several employees of a company named GAStech, located at the island of Kronos went missing. Mini-Challenge 2 aims to find unusual and suspicious behaviors of employees then to make contributions on investigation of the incident.\r\n2. Motivation\r\nThe task of Mini Challenge 2 is to explore anomalies and get meaningful insights to make recommendations for further investigation of the incident. The dataset used here combines geospatial data with aspatial information that allows us to apply geospatial regression techniques and geospatial clustering to understand nutrition and obesity at different geographic granularity.\r\nThe missing, conflicting, and imperfect data gives us chances to use exploratory data analysis techniques to discover patterns, spot anomalies, and check assumptions. We will attempt to link the geographic movement data and consumption data of employees’ credit card purchases and preferences together to provide actionable insights to the analysis.\r\n3. Project objectives\r\nThis project aims to deliver an R-Shiny application that provides:\r\nInteractive user interface design\r\nNutritional information interfaced with a visual chart representation\r\nClustering techniques through both aspatial and geospatial methods\r\nMeaningful and valid insights based on the dataset used\r\n4. Proposed Scope and Methodology\r\nAnalysis of Kronos Incident dataset with background research\r\nExploratory Data Analysis (EDA) methods in R\r\nExploratory Spatial Data Analysis (ESDA) methods in R\r\nClustering methods for aspatial and geospatial information in R\r\nR Markdown development for functionality checks\r\nR-Shiny app development for user interactivity\r\n5. Project Timeline\r\n6. Storyboard & Visualization Features\r\n7. Software Tools\r\nRStudio: https://rstudio.com/\r\n8. Proposed R Packages\r\nClustGeo: https://cran.r-project.org/web/packages/ClustGeo\r\nRColorBrewer: https://cran.r-project.org/web/packages/RColorBrewer\r\nshiny: https://shiny.rstudio.com\r\nshinythemes: https://cran.r-project.org/web/packages/shinythemes\r\nshinyWidgets: https://cran.r-project.org/web/packages/shinyWidgets\r\ntidyverse: https://www.tidyverse.org\r\ntmap: https://cran.r-project.org/web/packages/tmap\r\nsp: https://cran.r-project.org/web/packages/sp\r\nleaflet: https://cran.r-project.org/web/packages/leaflet\r\nplotly: https://cran.r-project.org/web/packages/plotly\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-06-13T14:53:04+08:00",
-    "input_file": "new.knit.md"
+    "last_modified": "2021-06-13T16:58:33+08:00",
+    "input_file": "proposal.knit.md"
   }
 ]

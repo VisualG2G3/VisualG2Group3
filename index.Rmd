@@ -1,5 +1,5 @@
 ---
-title: "VisualG2Group3"
+title: "Project G2 Group3"
 site: distill::distill_website
 listing: posts
 ---
