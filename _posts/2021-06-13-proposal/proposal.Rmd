@@ -1,14 +1,16 @@
 ---
-title: "Proposal"
+title: "Interactive Visualization Dashboard for Exploring Abnormal Tracking and Transaction of GAStech Employee"
 description: |
-  VAST Challenge 2021 Mini Challenge 2.
+  Project Proposal of VAST Challenge 2021 Mini Challenge 2.
 author:
   - name: DONG Fang, YIN Xiaolan, ZHANG Youzhen
-    url: https://example.com/norajones
+    url: https://isss608vaag2group3.netlify.app/
 date: 06-13-2021
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_depth: 3
 ---
 
 
@@ -57,6 +59,7 @@ This project aims to deliver an R-Shiny application that provides:
 
 # 5. Project Timeline 
 
+![](Image/timeline.png)
 
 # 6. Storyboard & Visualization Features
 
