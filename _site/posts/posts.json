@@ -15,5 +15,22 @@
     "preview": {},
     "last_modified": "2021-06-13T14:22:42+08:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/2021-06-13-new/",
+    "title": "new",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Nora Jones",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-06-13",
+    "categories": [],
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-06-13T14:53:04+08:00",
+    "input_file": "new.knit.md"
   }
 ]
