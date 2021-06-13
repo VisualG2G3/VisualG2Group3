@@ -1,5 +1,5 @@
 ---
-title: "Interactive Visualization Dashboard for Exploring Abnormal Tracking and Transaction of GAStech Employee"
+title: "Interactive Visualization for Exploring Abnormal Tracking and Transaction of GAStech Employee"
 description: |
   Project Proposal of VAST Challenge 2021 Mini Challenge 2.
 author:
@@ -59,7 +59,7 @@ This project aims to deliver an R-Shiny application that provides:
 
 # 5. Project Timeline 
 
-![](Image/timeline.png)
+![](Image/timetable.jpg)
 
 # 6. Storyboard & Visualization Features
 

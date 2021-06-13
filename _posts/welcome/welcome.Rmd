@@ -1,13 +1,12 @@
 ---
-title: "Welcome to VisualG2Group3"
+title: "Welcome to G2Group3 project"
 description: |
-  Welcome to our new blog, VisualG2Group3. We hope you enjoy 
-  reading what we have to say!
+  Welcome to our new blog, VAAG2Group3 project. We hope you enjoy reading what we have to say!
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+  - name: DONG Fang, YIN Xiaolan, ZHANG Youzhen 
+    url: https://isss608vaag2group3.netlify.app/
+    affiliation: School of Computing and Information System, SMU
+    affiliation_url: https://scis.smu.edu.sg/
 date: 06-13-2021
 output:
   distill::distill_article:
