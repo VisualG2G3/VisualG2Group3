@@ -5,6 +5,8 @@ description: |
 author:
   - name: DONG Fang, YIN Xiaolan, ZHANG Youzhen
     url: https://isss608vaag2group3.netlify.app/
+    affiliation: School of Computing and Information Systems, Singapore Management University
+    affiliation_url: https://scis.smu.edu.sg/
 date: 06-13-2021
 output:
   distill::distill_article:
@@ -21,6 +23,7 @@ knitr::opts_chunk$set(echo = FALSE)
 # 1. Background 
 
 The IEEE Visual Analytics Science and Technology (VAST) Challenge is an annual contest with the goal of advancing the field of visual analytics through competition. The VAST Challenge is designed to help researchers understand how their software would be used in a novel analytic task and determine if their data transformations, visualizations, and interactions would be beneficial for particular analytic tasks. VAST Challenge 2021 is the so-called Kronos Incident in which several employees of a company named GAStech, located at the island of Kronos went missing. Mini-Challenge 2 aims to find unusual and suspicious behaviors of employees then to make contributions on investigation of the incident.
+
 
 # 2. Motivation 
 
@@ -60,13 +63,18 @@ This project aims to deliver an R-Shiny application that provides:
 # 5. Project Timeline 
 
 ![](Image/timetable.jpg)
+_Fig. 1 The project timeline planned_
 
 # 6. Storyboard & Visualization Features
+
+To be edited after personal assignment complete.
 
 
 # 7. Software Tools
 
-RStudio: https://rstudio.com/
+**Git hub:** https://github.com/VisualG2G3/VisualG2Group3
+
+**RStudio:** https://rstudio.com/
 
 
 # 8. Proposed R Packages
