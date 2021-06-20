@@ -1,22 +1,5 @@
 [
   {
-    "path": "posts/welcome/",
-    "title": "Welcome to G2Group3 project",
-    "description": "Welcome to our new blog, VAAG2Group3 project. We hope you enjoy reading what we have to say!",
-    "author": [
-      {
-        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
-        "url": "https://isss608vaag2group3.netlify.app/"
-      }
-    ],
-    "date": "2021-06-13",
-    "categories": [],
-    "contents": "\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2021-06-13T17:44:15+08:00",
-    "input_file": "welcome.knit.md"
-  },
-  {
     "path": "posts/2021-06-13-proposal/",
     "title": "Interactive Visualization for Exploring Abnormal Tracking and Transaction of GAStech Employee",
     "description": "Project Proposal of VAST Challenge 2021 Mini Challenge 2.",
@@ -32,5 +15,22 @@
     "preview": {},
     "last_modified": "2021-06-20T21:21:44+08:00",
     "input_file": "proposal.knit.md"
+  },
+  {
+    "path": "posts/welcome/",
+    "title": "Welcome to G2Group3 project",
+    "description": "Welcome to our new blog, for VAA_G2_Group3 project. We hope you enjoy reading what we have to say!",
+    "author": [
+      {
+        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
+        "url": "https://isss608vaag2group3.netlify.app/"
+      }
+    ],
+    "date": "2021-06-13",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-06-20T21:26:26+08:00",
+    "input_file": "welcome.knit.md"
   }
 ]

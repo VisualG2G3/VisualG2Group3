@@ -1,7 +1,7 @@
 ---
 title: "Welcome to G2Group3 project"
 description: |
-  Welcome to our new blog, VAAG2Group3 project. We hope you enjoy reading what we have to say!
+  Welcome to our new blog, for VAA_G2_Group3 project. We hope you enjoy reading what we have to say!
 author:
   - name: DONG Fang, YIN Xiaolan, ZHANG Youzhen 
     url: https://isss608vaag2group3.netlify.app/
