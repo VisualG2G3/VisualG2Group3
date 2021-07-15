@@ -144,7 +144,7 @@ cc$last4ccnum = as.character(cc$last4ccnum)
 
 ### 2.2.4 Exploring and cleaning data
 
-Then we do some exploration for the data and check the missing values by using the code chunk below. Only *CarID* in car-assignments.cs has 9 missing values.
+Then we do some exploration for the data and check the missing values by using the code chunks below. Only *CarID* in car-assignments.csv has 9 missing values.
 
 ```{r}
 summarizeColumns(car_ass)
