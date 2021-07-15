@@ -1,5 +1,5 @@
 ---
-title: "Data Visualization and Analysis for Investigating the Kronos Incident"
+title: "Data Visualization and Analysis for the Kronos Incident Investigation Using R"
 description: |
   VAST Challenge 2021 Mini-Challenge 2.
 author:
