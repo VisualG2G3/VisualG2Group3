@@ -5,6 +5,8 @@ description: |
 author:
   - name: DONG Fang
     url: https://www.linkedin.com/in/reginadongf/
+    affiliation: School of Computing and Information Systems, Singapore Management University
+    affiliation_url: https://scis.smu.edu.sg/
 date: 07-16-2021
 output:
   distill::distill_article:
