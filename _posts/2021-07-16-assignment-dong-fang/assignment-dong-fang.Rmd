@@ -50,7 +50,7 @@ The challenges to be dealt with are listed below:
 4      |Given the data sources provided, identify potential informal or unofficial relationships among GASTech personnel. Provide evidence for these relationships. 
 5      |Do you see evidence of suspicious activity? Identify 1- 10 locations where you believe the suspicious activity is occurring, and why.
 
-The detailed information for Mini-challenge 2 is listed in [VAST Challenge 2021 official website](https://vast-challenge.github.io/2021/MC2.html).
+The detailed information and all the data needed for Mini-challenge 2 is available in [VAST Challenge 2021 official website](https://vast-challenge.github.io/2021/MC2.html).
 
 # 2. Data Preparation
 
@@ -69,14 +69,115 @@ gps.csv | vehicle tracking data | Timestamp <br> Car ID (integer) <br> Latitude 
 cc_data.csv | credit and debit card transaction data | Timestamp <br>	Location (name of the business) <br> Price (real) <br> Last 4 digits of the credit or debit card number
 loyalty_data.csv | loyalty card transaction data | Timestamp <br>	Location (name of the business) <br>	Price (real) <br>	Loyalty Number (A 5-character code starting with L that is unique for each card)
 
-## 2.2 Step for data preparation
+## 2.2 Steps for data preparation
+
+### 2.2.1 Installing and launching R Packages 
+
+We used R studio as the tool to import, process and visualize the data. The first thing is to launch necessary R packages for next steps.
+
+The code chunk below is used to install and load the packages.
+
+```{r}
+packages = c('ggiraph', 'plotly','DT', 'patchwork', 
+             'raster', 'sf','tmap','lubridate', 'clock',
+             'tidyverse', 'mlr')
+for (p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
+
+### 2.2.2 Importing relevent data
+
+First of all we import the CSV file using below code chunk.
+
+```{r}
+car_ass <- read_csv("data/car-assignments.csv")
+gps <- read_csv("data/gps.csv")
+cc <- read_csv("data/cc_data.csv")
+loyalty <- read_csv("data/loyalty_data.csv")
+```
+
+
+
+### 2.2.3 Wrangling the data
+
+As shown below, we need to check if the data type is proper in the imported tibble data table. It's obvious that the *Timestamp* in gps.csv, cc_data.csv and loyalty_data.csv should be in datetime format but now it's in character format. Besides, *CarID* in car-assignments.csv, *id* in gps.csv and *last4ccnum* in cc_data.csv should be converted from numerical data to categorical data.
+
+* car-assignments.csv
+
+```{r echo=FALSE}
+glimpse(car_ass)
+```
+
+* gps.csv
+
+```{r echo=FALSE}
+glimpse(gps)
+```
+
+* cc_data.csv
+
+```{r echo=FALSE}
+glimpse(cc)
+```
+
+* loyalty_data.csv
+
+```{r echo=FALSE}
+glimpse(loyalty)
+```
+
+We use below code chunk to covert data types.
+
+```{r}
+gps$Timestamp = mdy_hms(gps$Timestamp)
+cc$timestamp = mdy_hms(cc$timestamp)
+loyalty$timestamp = mdy(loyalty$timestamp)
+
+car_ass$CarID = as.character(car_ass$CarID)
+gps$id = as.character(gps$id)
+cc$last4ccnum = as.character(cc$last4ccnum)
+```
+
+### 2.2.4 Exploring and cleaning data
+
+Then we do some exploration for the data and check the missing values by using the code chunk below. Only *CarID* in car-assignments.cs has 9 missing values.
+
+```{r}
+summarizeColumns(car_ass)
+```
+
+```{r}
+summarizeColumns(gps)
+```
+
+```{r}
+summarizeColumns(cc)
+```
+
+```{r}
+summarizeColumns(loyalty)
+```
+
+
+
+# 3. Data Visualization
 
 
 
 
 
 
+# 4. Data Analysis and Insights 
 
+
+
+
+
+# 5. Conclusion
 
 
 
