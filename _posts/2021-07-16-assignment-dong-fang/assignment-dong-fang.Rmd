@@ -1,7 +1,7 @@
 ---
 title: "Data Visualization and Analysis for Investigating the Kronos Incident"
 description: |
-  VAST Challenge 2021 Mini Challenge 2.
+  VAST Challenge 2021 Mini-Challenge 2.
 author:
   - name: DONG Fang
     url: https://www.linkedin.com/in/reginadongf/
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(fig.retina = 3,   # To make the figure looks sharper, set 
 
 # 1. Background
 
-## 1.1 Case Overview
+## 1.1 Case overview
 
 GAStech is a Tethys-based company having been operating a natural gas production site in the island country of Kronos for over 20 years. It has produced remarkable profits and developed strong relationships with the government of Kronos, but has not been as successful in demonstrating environmental stewardship.
 
@@ -49,6 +49,44 @@ The challenges to be dealt with are listed below:
 5      |Do you see evidence of suspicious activity? Identify 1- 10 locations where you believe the suspicious activity is occurring, and why.
 
 The detailed information for Mini-challenge 2 is listed in [VAST Challenge 2021 official website](https://vast-challenge.github.io/2021/MC2.html).
+
+# 2. Data Preparation
+
+## 2.1 Data description
+
+The dataset used for Mini-Challenge 2 includes 4 CSV files, a package of ESRI shapefiles of Abila and Kronos, and a tourist map of Abila in JPEG format, as shown in the following screenshot.
+
+![](img/2.1dataset.jpg) <br> _Fig.1 Dataset for visualization and analysis_
+
+The data contents in the CSV files are listed below:
+
+**File**  | **Description**               | **Data Content**
+----------|-------------------------------|------------------------------------------------------
+car-assignments.csv | A list of vehicle assignments by employee | Employee Last Name <br>	Employee First Name <br> Car ID <br> Current Employment Type (Department) <br>	Current Employment Title (job title)
+gps.csv | vehicle tracking data | Timestamp <br> Car ID (integer) <br> Latitude <br> Longitude
+cc_data.csv | credit and debit card transaction data | Timestamp <br>	Location (name of the business) <br> Price (real) <br> Last 4 digits of the credit or debit card number
+loyalty_data.csv | loyalty card transaction data | Timestamp <br>	Location (name of the business) <br>	Price (real) <br>	Loyalty Number (A 5-character code starting with L that is unique for each card)
+
+## 2.2 Step for data preparation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
