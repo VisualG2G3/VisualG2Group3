@@ -189,7 +189,9 @@ knitr::kable(car_ass_na, format = "html")
 First of all, a 2d histogram with Location by Hour for credit card transaction was built by below code chunk.
 
 ```{r}
-gra_1 <- plot_ly(data = cc, x = ~as.factor(hour), y = ~location,
+d <- highlight_key(cc)
+
+gra_1 <- plot_ly(data = d, x = ~as.factor(hour), y = ~location,
                  hovertemplate = paste(
                    " %{yaxis.title.text}: %{y}<br>",
                    "%{xaxis.title.text}: %{x}<br>",
@@ -200,10 +202,9 @@ gra_1 <- plot_ly(data = cc, x = ~as.factor(hour), y = ~location,
          xaxis = list(title = "Time", tickmode = "linear"),
          yaxis = list(title="Location", tickmode = "linear")
          )
-gra_1
 
 crosstalk::bscols(gra_1,
-                  crosstalk::filter_slider("day", "Day", cc, ~timestamp), widths = 5)
+                  crosstalk::filter_select("day", "Day", d, ~as.factor(day), multiple = F), widths = 10)
 ```
 
 Then the 2d histograms with Location by Day for credit card and loyalty card transaction were created as below.
@@ -255,8 +256,6 @@ The first thing to do is plotting Raster Layer of the tourist map of Abila, Kron
 
 ```{r results='hide'}
 bgmap <- raster("data/Geospatial/MC2-tourist.tif")
-bgmap2 <- raster("data/MC2-tourist.jpg")
-bgmap2
 
 tm_shape(bgmap) +
 tm_rgb(bgmap, r = 1,g = 2,b = 3,
@@ -291,21 +290,7 @@ gps_path2 <- cbind(gps_path, np) %>%
   filter(np > 1) # exclude orphan coordinate records
 ```
 
-```{r}
-gps_path_selected <- gps_path2 %>%
-  filter(id=="1")
 
-tmap_mode("view")
-tm_shape(bgmap) +
-  tm_rgb(bgmap, r = 1,g = 2,b = 3,
-       alpha = NA,
-       saturation = 1,
-       interpolate = TRUE,
-       max.value = 255) +
-  tm_shape(gps_path_selected) +
-  tm_lines()+
-  tm_facets(by = "day")
-```
 
 ```{r}
 #d <- highlight_key(gps_path2)
@@ -319,20 +304,34 @@ m <- tm_shape(bgmap) +
        interpolate = TRUE,
        max.value = 255) +
   tm_shape(gps_path2) +
-  tm_lines(col = "id") 
+  tm_lines(col = "day") 
   #tm_facets(by = "id")
+m
+#gg <- highlight(m,
+#                "plotly_selected")
 
-gg <- highlight(m,
-                "plotly_selected")
-
-crosstalk::bscols(m,
-                  DT::datatable(gps_path2),
-                  widths = 5)
+#crosstalk::bscols(gg,
+#                  crosstalk::filter_slider("id", "ID", gps_path2, ~as.numeric(id)),
+#                  widths = 5)
 ```
 
-
-
 ```{r}
+gps_path_selected <- gps_path2 %>%
+  filter(day=="17")
+
+tmap_mode("view")
+tm_shape(bgmap) +
+  tm_rgb(bgmap, r = 1,g = 2,b = 3,
+       alpha = NA,
+       saturation = 1,
+       interpolate = TRUE,
+       max.value = 255) +
+  tm_shape(gps_path_selected) +
+  tm_lines(col = "id")
+ 
+```
+
+```{r eval=FALSE}
 #tmap_mode("view")
 
 m <- tm_shape(bgmap) +
