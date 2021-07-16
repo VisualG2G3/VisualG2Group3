@@ -79,8 +79,8 @@ The code chunk below is used to install and load the packages.
 
 ```{r}
 packages = c('ggiraph', 'plotly','DT', 'patchwork', 
-             'raster', 'sf','tmap','lubridate', 'clock',
-             'tidyverse', 'mlr')
+             'raster', 'sf','tmap', 'mapview','gifski',
+             'tidyverse', 'mlr','lubridate')
 for (p in packages){
   if(!require(p, character.only = T)){
     install.packages(p)
@@ -142,12 +142,14 @@ gps$id = as.character(gps$id)
 cc$last4ccnum = as.character(cc$last4ccnum)
 ```
 
-As the transaction date in credit and loyalty card data are all in January, we derive days and hours from *timestamp* and display them in different columns in cc_data.csv and loyalty_data.csv using below code chunk.
+As the transaction date in credit and loyalty card data are all in January, we derive days and hours from *timestamp* and display them in different columns in cc_data.csv and loyalty_data.csv using below code chunk. The same as GPS tracking data.
 
 ```{r}
 cc$day = day(cc$timestamp)
 cc$hour = hour(cc$timestamp)
 loyalty$day = day(loyalty$timestamp)
+gps$day = as.factor(day(gps$Timestamp))
+gps$hour = as.factor(hour(gps$Timestamp))
 ```
 
 
@@ -182,7 +184,7 @@ knitr::kable(car_ass_na, format = "html")
 
 # 3. Data Visualization
 
-## 3.1 Graph designed for question 1 & 2
+## 3.1 Histogram showing frequecy of transactions
 
 First of all, a 2d histogram with Location by Hour for credit card transaction was built by below code chunk.
 
@@ -199,6 +201,9 @@ gra_1 <- plot_ly(data = cc, x = ~as.factor(hour), y = ~location,
          yaxis = list(title="Location", tickmode = "linear")
          )
 gra_1
+
+crosstalk::bscols(gra_1,
+                  crosstalk::filter_slider("day", "Day", cc, ~timestamp), widths = 5)
 ```
 
 Then the 2d histograms with Location by Day for credit card and loyalty card transaction were created as below.
@@ -241,11 +246,109 @@ gra_2
 
 
 
-Now take the GPS tracking data into account,
+
+## 3.2 Geographical graph showing movement path
+
+Now take the GPS tracking data into account, it's necessary to draw movement path on the tourist map with the GPS tracking data, so that we can see where the employees have gone and gathered together during the two weeks before the disappearance.
+
+The first thing to do is plotting Raster Layer of the tourist map of Abila, Kronos, as the background map, and import Abila GIS data layer.
+
+```{r results='hide'}
+bgmap <- raster("data/Geospatial/MC2-tourist.tif")
+bgmap2 <- raster("data/MC2-tourist.jpg")
+bgmap2
+
+tm_shape(bgmap) +
+tm_rgb(bgmap, r = 1,g = 2,b = 3,
+       alpha = NA,
+       saturation = 1,
+       interpolate = TRUE,
+       max.value = 255)
+
+Abila_st <- st_read(dsn = "data/Geospatial",
+                    layer = "Abila")
+```
+
+The code chunk below is used to convert GPS spatial data into a Simple Feature (SF) data frame.
+
+```{r}
+gps_sf <- st_as_sf(gps, 
+                   coords = c("long", "lat"),
+                   crs = 4326)
+```
+
+Then combine the background map and the GPS tracking lines to generate the movement path.
+
+```{r}
+gps_path <- gps_sf %>%
+  group_by(id, day) %>%
+  summarize(m = mean(Timestamp), 
+            do_union=FALSE) %>%
+  st_cast("LINESTRING")
+
+np = npts(gps_path, by_feature = T)
+gps_path2 <- cbind(gps_path, np) %>%
+  filter(np > 1) # exclude orphan coordinate records
+```
+
+```{r}
+gps_path_selected <- gps_path2 %>%
+  filter(id=="1")
+
+tmap_mode("view")
+tm_shape(bgmap) +
+  tm_rgb(bgmap, r = 1,g = 2,b = 3,
+       alpha = NA,
+       saturation = 1,
+       interpolate = TRUE,
+       max.value = 255) +
+  tm_shape(gps_path_selected) +
+  tm_lines()+
+  tm_facets(by = "day")
+```
+
+```{r}
+#d <- highlight_key(gps_path2)
+
+tmap_mode("view")
+
+m <- tm_shape(bgmap) +
+  tm_rgb(bgmap, r = 1,g = 2,b = 3,
+       alpha = NA,
+       saturation = 1,
+       interpolate = TRUE,
+       max.value = 255) +
+  tm_shape(gps_path2) +
+  tm_lines(col = "id") 
+  #tm_facets(by = "id")
+
+gg <- highlight(m,
+                "plotly_selected")
+
+crosstalk::bscols(m,
+                  DT::datatable(gps_path2),
+                  widths = 5)
+```
 
 
-### 3.2 Graph designed for question 3
 
+```{r}
+#tmap_mode("view")
+
+m <- tm_shape(bgmap) +
+  tm_rgb(bgmap, r = 1,g = 2,b = 3,
+       alpha = NA,
+       saturation = 1,
+       interpolate = TRUE,
+       max.value = 255) +
+  tm_shape(gps_path2) +
+  tm_lines() +
+  tm_facets(along = "id")
+
+tmap_animation(m, 
+               filename = "img/days.gif",
+               delay=40)
+```
 
 
 
