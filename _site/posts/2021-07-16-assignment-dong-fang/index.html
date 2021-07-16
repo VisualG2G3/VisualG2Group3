@@ -2229,8 +2229,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>car_ass</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/car-assignments.csv"</span><span class='op'>)</span>
 <span class='va'>gps</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/gps.csv"</span><span class='op'>)</span>
-<span class='va'>cc</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/cc_data.csv"</span><span class='op'>)</span>
-<span class='va'>loyalty</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/loyalty_data.csv"</span><span class='op'>)</span>
+<span class='va'>cc</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/cc_data.csv"</span>, locale <span class='op'>=</span> <span class='fu'>locale</span><span class='op'>(</span>encoding <span class='op'>=</span> <span class='st'>"windows-1252"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>loyalty</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/loyalty_data.csv"</span>, locale <span class='op'>=</span> <span class='fu'>locale</span><span class='op'>(</span>encoding <span class='op'>=</span> <span class='st'>"windows-1252"</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>

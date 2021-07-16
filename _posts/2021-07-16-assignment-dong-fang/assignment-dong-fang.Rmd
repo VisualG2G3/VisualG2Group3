@@ -96,8 +96,8 @@ First of all we import the CSV file using below code chunk.
 ```{r}
 car_ass <- read_csv("data/car-assignments.csv")
 gps <- read_csv("data/gps.csv")
-cc <- read_csv("data/cc_data.csv")
-loyalty <- read_csv("data/loyalty_data.csv")
+cc <- read_csv("data/cc_data.csv", locale = locale(encoding = "windows-1252"))
+loyalty <- read_csv("data/loyalty_data.csv", locale = locale(encoding = "windows-1252"))
 ```
 
 
