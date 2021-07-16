@@ -307,12 +307,6 @@ m <- tm_shape(bgmap) +
   tm_lines(col = "day") 
   #tm_facets(by = "id")
 m
-#gg <- highlight(m,
-#                "plotly_selected")
-
-#crosstalk::bscols(gg,
-#                  crosstalk::filter_slider("id", "ID", gps_path2, ~as.numeric(id)),
-#                  widths = 5)
 ```
 
 ```{r}
