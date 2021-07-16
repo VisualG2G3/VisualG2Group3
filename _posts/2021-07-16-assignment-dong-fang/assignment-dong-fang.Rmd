@@ -58,7 +58,7 @@ The detailed information and all the data needed for Mini-challenge 2 is availab
 
 The dataset used for Mini-Challenge 2 includes 4 CSV files, a package of ESRI shapefiles of Abila and Kronos, and a tourist map of Abila in JPEG format, as shown in the following screenshot.
 
-![](img/2.1dataset.jpg) <br> _Fig.1 Dataset for visualization and analysis_
+![](img/2.1dataset.jpg){width=80%} <br> <p style="text-align:center;"> _Fig.1 Dataset for visualization and analysis_ </p>
 
 The data contents in the CSV files are listed below:
 
@@ -134,7 +134,7 @@ We use below code chunk to covert data types.
 
 ```{r}
 gps$Timestamp = mdy_hms(gps$Timestamp)
-cc$timestamp = mdy_hms(cc$timestamp)
+cc$timestamp = mdy_hm(cc$timestamp)
 loyalty$timestamp = mdy(loyalty$timestamp)
 
 car_ass$CarID = as.character(car_ass$CarID)
@@ -142,30 +142,109 @@ gps$id = as.character(gps$id)
 cc$last4ccnum = as.character(cc$last4ccnum)
 ```
 
+As the transaction date in credit and loyalty card data are all in January, we derive days and hours from *timestamp* and display them in different columns in cc_data.csv and loyalty_data.csv using below code chunk.
+
+```{r}
+cc$day = day(cc$timestamp)
+cc$hour = hour(cc$timestamp)
+loyalty$day = day(loyalty$timestamp)
+```
+
+
 ### 2.2.4 Exploring and cleaning data
 
 Then we do some exploration for the data and check the missing values by using the code chunks below. Only *CarID* in car-assignments.csv has 9 missing values.
 
 ```{r}
-summarizeColumns(car_ass)
+knitr::kable(summarizeColumns(car_ass))
 ```
 
 ```{r}
-summarizeColumns(gps)
+knitr::kable(summarizeColumns(gps))
 ```
 
 ```{r}
-summarizeColumns(cc)
+knitr::kable(summarizeColumns(cc))
 ```
 
 ```{r}
-summarizeColumns(loyalty)
+knitr::kable(summarizeColumns(loyalty))
+```
+
+The records containing missing values in car-assignment.csv are shown below. We can see these records are all company trucks not for personal use.
+
+```{r}
+car_ass_na <- filter(car_ass, is.na(CarID))
+knitr::kable(car_ass_na, format = "html")
 ```
 
 
 
 # 3. Data Visualization
 
+## 3.1 Graph designed for question 1 & 2
+
+First of all, a 2d histogram with Location by Hour for credit card transaction was built by below code chunk.
+
+```{r}
+gra_1 <- plot_ly(data = cc, x = ~as.factor(hour), y = ~location,
+                 hovertemplate = paste(
+                   " %{yaxis.title.text}: %{y}<br>",
+                   "%{xaxis.title.text}: %{x}<br>",
+                   "Transaction Count: %{z}",
+                   "<extra></extra>")) %>%
+  add_histogram2d(colors = "Blues") %>%
+  layout(title = "<b>Graph.1 Credit Card Transcation Frequency by Hour</b>",
+         xaxis = list(title = "Time", tickmode = "linear"),
+         yaxis = list(title="Location", tickmode = "linear")
+         )
+gra_1
+```
+
+Then the 2d histograms with Location by Day for credit card and loyalty card transaction were created as below.
+
+```{r}
+gra_2.1 <- plot_ly(data = cc, x = ~as.factor(day), y = ~location,
+                 hovertemplate = paste(
+                   " %{yaxis.title.text}: %{y}<br>",
+                   "%{xaxis.title.text}: %{x}<br>",
+                   "Transaction Count: %{z}",
+                   "<extra></extra>")) %>%
+  add_histogram2d(colors = "Blues") %>%
+  layout(annotations = list(text = "Credit Card", showarrow = F, x =17, y=32),
+         xaxis = list(tickmode = "linear"),
+         yaxis = list(tickmode = "linear")
+         )
+
+gra_2.2 <- plot_ly(data = loyalty, x = ~as.factor(day), y = ~location,
+                 hovertemplate = paste(
+                   " Location: %{y}<br>",
+                   "Date of Jan: %{x}<br>",
+                   "Transaction Count: %{z}",
+                   "<extra></extra>")) %>%
+  add_histogram2d(colors = "Purples") %>%
+  layout(annotations = list(text = "Loyalty Card", showarrow = F, x =17, y=32),
+         xaxis = list(tickmode = "linear"),
+         yaxis = list(tickmode = "linear", visible = T)
+         )
+
+gra_2 <- subplot(gra_2.1, gra_2.2, nrows = 1, shareY = T) %>%
+  layout(title = "<b>Graph.2 Transaction Frequency by Day</b>",
+         xaxis = list(title = "Date of Jan"),
+         xaxis2 = list(title = "Date of Jan"),
+         yaxis = list(title = "Location"),
+         autosize = F, width = 900, width2 = 900, height = 400
+         )
+
+gra_2
+```
+
+
+
+Now take the GPS tracking data into account,
+
+
+### 3.2 Graph designed for question 3
 
 
 
