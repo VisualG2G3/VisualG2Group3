@@ -8,5 +8,13 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Proposal"
-      href: posts/2021-06-13-proposal/index.html    
+      href: posts/2021-06-13-proposal/index.html
+    - text: "Report"
+      href: posts/2021-06-13-proposal/index.html
+    - text: "Poster"
+      href: posts/2021-06-13-proposal/index.html
+    - text: "Shiny"
+      href: posts/2021-06-13-proposal/index.html
+    - text: "User Guide"
+      href: posts/2021-06-13-proposal/index.html
 output: distill::distill_article

@@ -6,14 +6,14 @@
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-04T16:31:43+08:00"
+      "last_modified": "2021-08-04T16:36:31+08:00"
     },
     {
       "path": "index.html",
       "title": "Project G2 Group3",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-04T16:31:44+08:00"
+      "last_modified": "2021-08-04T16:36:32+08:00"
     }
   ],
   "collections": ["posts/posts.json"]
