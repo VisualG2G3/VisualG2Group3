@@ -16,5 +16,5 @@ navbar:
     - text: "Shiny"
       href: posts/2021-06-13-proposal/index.html
     - text: "User Guide"
-      href: posts/2021-06-13-proposal/index.html
+      href: posts/2021-08-04-user-guide/index.html
 output: distill::distill_article
