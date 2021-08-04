@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-08-04-user-guide/",
+    "title": "User Guide",
+    "description": "Step-by-step guide on how to use the data visualisation function designed",
+    "author": [
+      {
+        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
+        "url": "https://isss608vaag2group3.netlify.app/"
+      }
+    ],
+    "date": "2021-08-04",
+    "categories": [],
+    "contents": "\r\nIdentify the owners of cars and cards\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-08-04T17:27:41+08:00",
+    "input_file": "user-guide.knit.md"
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to G2Group3 project",
     "description": "Welcome to our new blog, for VAA_G2_Group3 project. We hope you enjoy reading what we have to say!",
