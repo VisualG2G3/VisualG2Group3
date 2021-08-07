@@ -11,9 +11,9 @@
     ],
     "date": "2021-08-07",
     "categories": [],
-    "contents": "\r\nThe practice research paper is edited using the Poster template of Posterdown package. The link to the poste can be found here.\r\n\r\n\r\n\r\n",
+    "contents": "\r\nThe project poster is edited using the Poster template of Posterdown package. The link to the poster can be found here.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-08-07T20:58:50+08:00",
+    "last_modified": "2021-08-07T21:24:55+08:00",
     "input_file": {}
   },
   {
@@ -31,6 +31,23 @@
     "contents": "\r\nThe practice research paper is edited using the ACM article template of rticle package. The link to the paper can be found here.\r\n\r\n\r\n\r\n",
     "preview": {},
     "last_modified": "2021-08-07T20:54:34+08:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2021-08-07-shinyapp/",
+    "title": "Shiny Application for Exploring Abnormal Tracking and Transactions",
+    "description": "Link to Shiny Application.",
+    "author": [
+      {
+        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
+        "url": "https://isss608vaag2group3.netlify.app/"
+      }
+    ],
+    "date": "2021-08-07",
+    "categories": [],
+    "contents": "\r\nThe Shiny Application is edited using the shiny and other related packages. The link to the Shiny Application can be found here.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-08-07T21:25:38+08:00",
     "input_file": {}
   },
   {
