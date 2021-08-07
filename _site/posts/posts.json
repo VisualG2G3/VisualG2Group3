@@ -1,5 +1,39 @@
 [
   {
+    "path": "posts/2021-08-07-practiceresearchpaper/",
+    "title": "Practice Research Paper",
+    "description": "A Visual Analytics Application practice and research.",
+    "author": [
+      {
+        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
+        "url": "https://isss608vaag2group3.netlify.app/"
+      }
+    ],
+    "date": "2021-08-07",
+    "categories": [],
+    "contents": "\r\nThe practice research paper is edited using the ACM article template of rticle package. The link to the paper can be found here.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-08-07T20:54:34+08:00",
+    "input_file": "practiceresearchpaper.knit.md"
+  },
+  {
+    "path": "posts/2021-08-07-poster/",
+    "title": "Poster of Group Project",
+    "description": "The poster for Visual Analytics Application practice and research.",
+    "author": [
+      {
+        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
+        "url": "https://isss608vaag2group3.netlify.app/"
+      }
+    ],
+    "date": "2021-08-07",
+    "categories": [],
+    "contents": "\r\nThe practice research paper is edited using the Poster template of Posterdown package. The link to the poste can be found here.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-08-07T20:58:50+08:00",
+    "input_file": "poster.knit.md"
+  },
+  {
     "path": "posts/2021-08-04-user-guide/",
     "title": "User Guide",
     "description": "Step-by-step guide on how to use the data visualisation function designed",
