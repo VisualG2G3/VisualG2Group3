@@ -1,8 +1,8 @@
 [
   {
     "path": "posts/2021-08-07-poster/",
-    "title": "Poster of Group Project",
-    "description": "The poster for Visual Analytics Application practice and research.",
+    "title": "Project Poster",
+    "description": "Poster of visualization and analysis for VAST Challenge 2021 Mini Challenge 2.",
     "author": [
       {
         "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
@@ -11,15 +11,15 @@
     ],
     "date": "2021-08-07",
     "categories": [],
-    "contents": "\r\nThe project poster is edited using the Poster template of Posterdown package. The link to the poster can be found here.\r\n\r\n\r\n\r\n",
+    "contents": "\r\nThe project poster is designed and created using the Poster template of posterdown package. The link to the poster can be found here.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-08-07T21:24:55+08:00",
-    "input_file": {}
+    "last_modified": "2021-08-07T21:41:13+08:00",
+    "input_file": "poster.knit.md"
   },
   {
     "path": "posts/2021-08-07-practiceresearchpaper/",
     "title": "Practice Research Paper",
-    "description": "A Visual Analytics Application practice and research.",
+    "description": "The reseach paper of visualization and analysis on abnormal tracking and transactions.",
     "author": [
       {
         "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
@@ -30,13 +30,13 @@
     "categories": [],
     "contents": "\r\nThe practice research paper is edited using the ACM article template of rticle package. The link to the paper can be found here.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-08-07T20:54:34+08:00",
-    "input_file": {}
+    "last_modified": "2021-08-07T21:45:32+08:00",
+    "input_file": "practiceresearchpaper.knit.md"
   },
   {
     "path": "posts/2021-08-07-shinyapp/",
-    "title": "Shiny Application for Exploring Abnormal Tracking and Transactions",
-    "description": "Link to Shiny Application.",
+    "title": "Interactive Shiny Application",
+    "description": "Link to Shiny application for exploring abnormal tracking and transactions of GASTech employees.",
     "author": [
       {
         "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
@@ -45,10 +45,10 @@
     ],
     "date": "2021-08-07",
     "categories": [],
-    "contents": "\r\nThe Shiny Application is edited using the shiny and other related packages. The link to the Shiny Application can be found here.\r\n\r\n\r\n\r\n",
+    "contents": "\r\nThe Shiny application is designed and built using shiny and other related packages in R. The link to the Shiny Application can be found here.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-08-07T21:25:38+08:00",
-    "input_file": {}
+    "last_modified": "2021-08-07T21:48:05+08:00",
+    "input_file": "shinyapp.knit.md"
   },
   {
     "path": "posts/2021-08-04-user-guide/",

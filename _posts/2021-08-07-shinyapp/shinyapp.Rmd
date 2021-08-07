@@ -1,7 +1,7 @@
 ---
-title: "Shiny Application for Exploring Abnormal Tracking and Transactions"
+title: "Interactive Shiny Application"
 description: |
-  Link to Shiny Application.
+  Link to Shiny application for exploring abnormal tracking and transactions of GASTech employees.
 author:
   - name: DONG Fang, YIN Xiaolan, ZHANG Youzhen
     url: https://isss608vaag2group3.netlify.app/
@@ -18,5 +18,5 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-The Shiny Application is edited using the `shiny` and other related packages. The link to the Shiny Application can be found [here](https://scis.smu.edu.sg/).
+The Shiny application is designed and built using `shiny` and other related packages in R. The link to the Shiny Application can be found [here](https://scis.smu.edu.sg/).
 

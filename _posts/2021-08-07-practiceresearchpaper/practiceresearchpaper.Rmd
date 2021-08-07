@@ -1,7 +1,7 @@
 ---
 title: "Practice Research Paper"
 description: |
-  A Visual Analytics Application practice and research.
+  The reseach paper of visualization and analysis on abnormal tracking and transactions.
 author:
   - name: DONG Fang, YIN Xiaolan, ZHANG Youzhen
     url: https://isss608vaag2group3.netlify.app/
