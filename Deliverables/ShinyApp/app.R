@@ -65,7 +65,7 @@ gps$hour = as.factor(hour(gps$Timestamp))
 cards <- cc %>%
     dplyr::select(-hour) %>%
     dplyr::rename(cardnum = last4ccnum) %>%
-    mutate(card = "Credit Card") %>%
+    dplyr::mutate(card = "Credit Card") %>%
     rbind(loyalty %>%
               dplyr::rename(cardnum = loyaltynum) %>%
               mutate(card = "Loyalty Card")) 
@@ -87,14 +87,14 @@ gps_sf <- st_as_sf(gps,
 
 ## Group by id and day
 gps_path <- gps_sf %>%
-    group_by(id, day) %>%
+    dplyr::group_by(id, day) %>%
     dplyr::summarize(m = mean(Timestamp), 
                      do_union=FALSE) %>%
     st_cast("LINESTRING")
 
 np = npts(gps_path, by_feature = T)
 gps_path2 <- cbind(gps_path, np) %>%
-    filter(np > 1) # exclude orphan coordinate records
+    dplyr::filter(np > 1) # exclude orphan coordinate records
 
 
 # --------Join owner matching result between car assignment and cards number
@@ -163,7 +163,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
     #theme = shinytheme("simplex"),
     
     # ------Navigation Bar
-    navbarPage("Exploring Abnormal Tracking and Transaction of GAStech Employee", 
+    navbarPage("Exploring Abnormal Tracking and Transactions of GAStech Employees", 
                fluid = T, windowTitle="VAST Challenge 2021 Mini Challenge 2", 
                selected="eda",
                
@@ -357,19 +357,16 @@ server <- function(input, output, session) {
     
     
     # ------Heatmaps in tab 1
-    d1 <- reactive(filter(cards,
-                          card %in% input$cardtypet1,
-                          cardnum %in% input$ccnumt1,
-                          weekday %in% input$wdayt1,
-                          day %in% input$dayt1))
-    d2 <- reactive(filter(cc,
-                          last4ccnum %in% input$ccnumt1,
-                          weekday %in% input$wdayt1,
-                          day %in% input$dayt1))
-    
     output$heatt1 <- renderPlotly({
         thematic::thematic_shiny()
-        plot_ly(data = d1(), x = ~as.factor(day), y = ~location,
+        
+        d1 <- filter(cards,
+                     card %in% input$cardtypet1,
+                     cardnum %in% input$ccnumt1,
+                     weekday %in% input$wdayt1,
+                     day %in% input$dayt1)
+        
+        plot_ly(data = d1, x = ~as.factor(day), y = ~location,
                 hovertemplate = paste(
                     " %{yaxis.title.text}: %{y}<br>",
                     "%{xaxis.title.text}: %{x}<br>",
@@ -382,7 +379,13 @@ server <- function(input, output, session) {
     
     output$heatt1_hour <- renderPlotly({
         thematic::thematic_shiny()
-        plot_ly(data = d2(), x = ~as.factor(hour), y = ~location,
+        
+        d2 <- filter(cc,
+                     last4ccnum %in% input$ccnumt1,
+                     weekday %in% input$wdayt1,
+                     day %in% input$dayt1)
+        
+        plot_ly(data = d2, x = ~as.factor(hour), y = ~location,
                 hovertemplate = paste(
                     " %{yaxis.title.text}: %{y}<br>",
                     "%{xaxis.title.text}: %{x}<br>",
@@ -404,13 +407,15 @@ server <- function(input, output, session) {
     })
     
     # ------Boxplot in tab 1
-    d <- reactive(dplyr::filter(cards, 
-                                cardnum %in% input$ccnumt1, 
-                                weekday %in% input$wdayt1,
-                                day %in% input$dayt1))
     output$boxt1 <- renderPlotly({
         thematic::thematic_shiny()
-        plot_ly(data = d(),x = ~location, y= ~price, 
+        
+        d <- dplyr::filter(cards,
+                           cardnum %in% input$ccnumt1,
+                           weekday %in% input$wdayt1,
+                           day %in% input$dayt1)
+        
+        plot_ly(data = d,x = ~location, y= ~price, 
                 color = ~card, colors = "Paired",
                 type = 'box', boxmean = T) %>%
             layout(#title = "Box Plot of Transaction Price by Location",
@@ -421,25 +426,30 @@ server <- function(input, output, session) {
     
     
     # ------GPS by day in tab 2
-    gps_path_selected <- reactive(filter(gps_path2,
-                                         id == input$cidt2,
-                                         day %in% input$dayt2))
+    
     
     output$gps1 <- renderTmap({
         thematic::thematic_shiny()
+        
+        gps_path_selected <- dplyr::filter(gps_path2,
+                                           id == input$cidt2,
+                                           day %in% input$dayt2)
+        
         tmap_mode("view")
         tm_shape(bgmap) +
             tm_rgb(r=1, g=2, b=3,
                    alpha = NA, saturation = 1,
                    interpolate = T,
                    max.value = 255) +
-            tm_shape(gps_path_selected()) +
+            tm_shape(gps_path_selected) +
             tm_lines(col = "day", palette = "Dark2")
     })
     
     # ------GPS by hour in tab 2
     
     output$gps2 <- renderTmap({
+        thematic::thematic_shiny()
+        
         gps_id <- gps_sf %>%
             filter(id == input$cidt2 & day == input$dayt2)
         
