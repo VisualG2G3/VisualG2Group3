@@ -190,7 +190,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
     #theme = shinytheme("simplex"),
     
     # ------Navigation Bar
-    navbarPage("Exploring Abnormal Tracking and Transactions of GAStech Employees", 
+    navbarPage("Exploring Abnormal Trajectories and Transactions of GAStech Employees", 
                fluid = T, windowTitle="VAST Challenge 2021 Mini Challenge 2", 
                selected="eda",
                
@@ -292,7 +292,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                
                # ------Panel GPS
                tabPanel("GPS", value = "gps", fluid = T, icon = icon("compass"),
-                        titlePanel(tags$b("Analysis on GPS tracking of cars assigned by GASTech")),
+                        titlePanel(tags$b("Analysis on movement path of cars assigned by GASTech")),
                         
                         sidebarLayout(position = "left", fluid = T,
                                       sidebarPanel(width = 3, fluid = T,
