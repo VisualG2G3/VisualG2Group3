@@ -21,21 +21,21 @@ library(tidyverse)
 
 # --------Import data
 
-#car_ass <- read_csv("Deliverables/ShinyApp/data/car-assignments.csv")
-#gps <- read_csv("Deliverables/ShinyApp/data/gps.csv")
-#saveRDS(gps, file = "Deliverables/ShinyApp/data/gps_rds")
-#cc <- read_csv("Deliverables/ShinyApp/data/cc_data.csv", 
+# car_ass <- read_csv("Deliverables/ShinyApp/data/car-assignments.csv")
+# #gps <- read_csv("Deliverables/ShinyApp/data/gps.csv")
+# #saveRDS(gps, file = "Deliverables/ShinyApp/data/gps_rds")
+# cc <- read_csv("Deliverables/ShinyApp/data/cc_data.csv",
 #               locale = locale(encoding = "windows-1252"))
-#loyalty <- read_csv("Deliverables/ShinyApp/data/loyalty_data.csv", 
+# loyalty <- read_csv("Deliverables/ShinyApp/data/loyalty_data.csv",
 #                    locale = locale(encoding = "windows-1252"))
-#gps <- readRDS("Deliverables/ShinyApp/data/gps_rds")
+# gps <- readRDS("Deliverables/ShinyApp/data/gps_rds")
 
 ## For Shiny
 car_ass <- read_csv("data/car-assignments.csv")
 gps <- readRDS("data/gps_rds")
-cc <- read_csv("data/cc_data.csv", 
+cc <- read_csv("data/cc_data.csv",
                locale = locale(encoding = "windows-1252"))
-loyalty <- read_csv("data/loyalty_data.csv", 
+loyalty <- read_csv("data/loyalty_data.csv",
                     locale = locale(encoding = "windows-1252"))
 
 
@@ -148,7 +148,7 @@ car_id <- as.character(sort(unique(c(as.integer(gps$id)))))
 # --------Self define function
 hmcolor <- function(cardtype){
     if(cardtype == "Loyalty Card" ){
-        return("Greys")
+        return("Greens")
     }
     else{
         return("Blues")
@@ -323,7 +323,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                ),
                
                # ------Panel Matching
-               tabPanel("Owner Match", value = "match", fluid =T, icon = icon("phabricator"),
+               tabPanel("Owner Matching", value = "match", fluid =T, icon = icon("phabricator"),
                         titlePanel(tags$b("The matching result for owners of cards and cars")),
                         
                         fluidRow(column(width = 6,
@@ -419,8 +419,8 @@ server <- function(input, output, session) {
                 color = ~card, colors = "Paired",
                 type = 'box', boxmean = T) %>%
             layout(#title = "Box Plot of Transaction Price by Location",
-                xaxis = list(title = "Price"),
-                yaxis = list(title = "Location"),
+                xaxis = list(title = "Location"),
+                yaxis = list(title = "Price"),
                 boxmode = "group")
     })
     
@@ -551,19 +551,25 @@ server <- function(input, output, session) {
     
     # ------Heatmap in tab2
     output$heatt2 <- renderPlotly({
-        if (input$wdayt2 == "weekend"){
+        if (input$wdayt2 == c("Weekend")){
             gps_sf_w <- gps_sf %>% 
-                dplyr::filter(weekday == "Sat" | weekday == "Sun")
-        } else {
+                dplyr::filter(weekday %in% wnd)
+        } 
+        else if (input$wdayt2 == c("Weekday")) {
             gps_sf_w <- gps_sf %>% 
-                dplyr::filter(weekday >"Sun" & weekday < "Sat")
-        }
+                dplyr::filter(weekday %in% wd)
+        } 
+        else if(input$wdayt2 == c("Weekday", "Weekend")){
+            gps_sf_w <- gps_sf
+            }
+        
         #if (input$gpshour_daynum != "ALL"){
         #    gps_sf_w <- gps_sf_w %>% 
         #        filter(gps_sf_w$md == input$gpshour_daynum)
         #}
         
-        hm_gps <- plot_ly(gps_sf_w, x = ~hour, y = ~id,
+        hm_gps <- plot_ly(gps_sf_w, x = ~hour, y = ~factor(id, 
+                                                          levels = c(car_id)), #Car ID order
                           hovertemplate = paste(
                               " %{yaxis.title.text}: %{y}<br>",
                               "%{xaxis.title.text}: %{x}<br>",
@@ -593,11 +599,11 @@ server <- function(input, output, session) {
         thematic::thematic_shiny()
         
         s <- input$matcht3_rows_selected
-        if(is.null(s)) return(NULL)
+        #if(is.null(s)) return(NULL)
         
         s_carid <- filter(owner_match, row_number() %in% s)$CarID
         
-        #if(length(s_carid) == 0) {s_carid <- owner_match$CarID}
+        if(length(s_carid) == 0) {s_carid <- owner_match$CarID}
         
         gps_sf_temp <- gps_sf %>% 
             filter(id %in% s_carid)
@@ -620,11 +626,11 @@ server <- function(input, output, session) {
         thematic::thematic_shiny()
         
         s <- input$matcht3_rows_selected
-        if(is.null(s)) return(NULL)
+        #if(is.null(s)) return(NULL)
         
         s_carid <- filter(owner_match, row_number() %in% s)$CarID
         
-        #if(length(s_carid) == 0) {s_carid <- owner_match$CarID}
+        if(length(s_carid) == 0) {s_carid <- owner_match$CarID}
         
         match_selected <- matchres %>% 
             filter(CarID %in% s_carid)
