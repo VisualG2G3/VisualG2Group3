@@ -366,14 +366,14 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                
                # ------Panel Matching
                tabPanel("Owner Matching", value = "match", fluid =T, icon = icon("phabricator"),
-                        titlePanel(tags$b("The matching result for owners of cards and cars")),
+                        titlePanel(tags$b("Correspondence between car owner and credit card/loyalty card holder")),
                         
                         fluidRow(column(width = 6,
                                         DT::dataTableOutput("matcht3" #, height = "650px"
                                         )                # left side
                         ),
                         column(width = 6,
-                               p(tags$i("*Tip: click on the rows in the data table to see more data visualization for selected employee")),
+                               p(tags$i("*Tip: click the row in the data table to see specific heatmap and line chart for selected employee")),
                                plotlyOutput("heatt3", height = "350px"),              # right side
                                hr(),
                                radioGroupButtons("cardtypet3",
