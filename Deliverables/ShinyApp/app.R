@@ -30,6 +30,7 @@ library(tidyverse)
 #                    locale = locale(encoding = "windows-1252"))
 # gps <- readRDS("Deliverables/ShinyApp/data/gps_rds")
 # map_hourcolor <- read_csv("Deliverables/ShinyApp/data/map_hourcolor.csv")
+# cb_cc_loy <- read_csv("Deliverables/ShinyApp/data/combine_cc_loyalty.csv")
 
 ## For Shiny
 car_ass <- read_csv("data/car-assignments.csv")
@@ -39,6 +40,7 @@ cc <- read_csv("data/cc_data.csv",
 loyalty <- read_csv("data/loyalty_data.csv",
                     locale = locale(encoding = "windows-1252"))
 map_hourcolor <- read_csv("data/map_hourcolor.csv")
+cb_cc_loy <- read_csv("data/combine_cc_loyalty.csv")
 
 
 # --------Edit columns
@@ -129,6 +131,24 @@ names(matchres)[6] <- "price_cc"
 names(matchres)[10] <- "timestamp_loy"
 names(matchres)[11] <- "location_loy"
 names(matchres)[12] <- "price_loy"
+
+
+# --------Join transaction data of credit card and loyalty card
+cb_cc_loy$last4ccnum = as.character(cb_cc_loy$last4ccnum)
+
+cbccloy <- left_join(cb_cc_loy, owner_match_ori, 
+                     by= c("last4ccnum" = "Credit card num",
+                           "loyaltynum" = "Loyalty card num"), 
+                     na_matches = "never") %>%
+    rename("Datatime (credit)" = "timestamp", "Location" = "location",
+           "Price" = "price", "Credit card num" = "last4ccnum",
+           "Loyalty card num" = "loyaltynum", "Date (loyalty)" = "date")
+
+cbccloy$`Date (loyalty)` = dmy(cbccloy$`Date (loyalty)`)
+cbccloy$`Weekday (loyalty)` = wday(cbccloy$`Date (loyalty)`, label = T, abbr = T)
+cbccloy$`Weekday (credit)` = wday(cbccloy$`Datatime (credit)`, label = T, abbr = T)
+
+cbccloy <- cbccloy[c(2,3,4,1,9,6,5,8,7)]
 
 
 # --------All global parameters
@@ -365,6 +385,19 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                plotlyOutput("linet3", height = "270px" )
                         )
                         )
+               ),
+               
+               # ------Panel Transaction Data
+               tabPanel("Data", value = "datatable", fluid = T, icon = icon("database"),
+                        titlePanel(tags$b("Transaction data table of credit card and loyalty card")),
+                        
+                        fluidRow(column(width = 12,
+                                        DT::dataTableOutput("cbccloy_t4", 
+                                                            width = "100%", 
+                                                            height = "700px"
+                                                            )
+                                        ))
+                   
                )
                
                
@@ -668,8 +701,8 @@ server <- function(input, output, session) {
         DT::datatable(owner_match, filter = c("top"),
                       class = "hover", rownames = F,
                       extensions= "Scroller",
-                      options = list(dom = "tf", scrollX = TRUE,
-                          scroller=TRUE, scrollY=570, deferRender=TRUE
+                      options = list(dom = "t", scrollX = TRUE,
+                          scroller=TRUE, scrollY=600, deferRender=TRUE
                       )
         )
     }, server = FALSE)
@@ -743,6 +776,21 @@ server <- function(input, output, session) {
         }
         
         linec
+    })
+    
+    
+    # ------Combined CC and Loy cards transaction result
+    output$cbccloy_t4 <- renderDataTable({
+        thematic::thematic_shiny()
+        DT::datatable(cbccloy, filter = c("top"),
+                      class = "hover", #rownames = F,
+                      #extensions= "Scroller",
+                      options = list(dom = "rtip", scrollX = TRUE,
+                                     autoWidth = TRUE, pageLength = 12,
+                                     columnDefs = list(list(className = "dt-right", targets = "_all"))
+                                     #scroller=TRUE, scrollY=570, deferRender=TRUE
+                                     )
+        )
     })
     
     
