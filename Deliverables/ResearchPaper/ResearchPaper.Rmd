@@ -1,5 +1,5 @@
 ---
-title: Interactive Visualization for Exploring Abnormal Tracking and Transactions of GAStech Employees
+title: Interactive Visualization for Exploring Abnormal Trajectories and Transactions of GAStech Employees
 author:
   - name: Dong Fang
     email: fang.dong.2020@mitb.smu.edu.sg
@@ -80,8 +80,55 @@ In summary, it is necessary to check the car tracking details for every car at a
 
 # Design of Framework
 
+The Design of our Shiny App is to provide a visualization tool of the GPS track and transaction data, so that the users not only could get an overview of data distribution, but also do exploration and analysis to derive deeper insights on data. Further more, the Shiny APP is designed to be highly interactive but easy to operate, since applied visualization techniques should focus on user-specific needs and be easily understandable to users (Haara et al., 2018) [@HAARA201871].
 
+Users could hover over the plot to see the tooltip with more detailed information, click on the figure to drill down the data, drag and drop to zoom in part of graphs. Several selections are set at the left side of charts to help users quickly customize the filter criteria by themselves. Besides, our Shiny App accomplished the interactivity between data table and charts which makes it convenient to detect relationships within data sets.
 
+To start with, the introduction page give an overview of the background and structure of the application. This allows users to have an understanding of the case to be explored. Then come four visualization panels namely: EDA, GPS, Owner Matching and Data.
+
+## Exploratory data analysis
+
+The first tab panel aims to enable users to do Exploratory Data Analysis (EDA) on transaction data of credit and loyalty card, to observe the popular spots and detect abnormal activities. 
+
+As shown in the following figure, this panel is consist of a side bar with several selections on the left, and three charts on the right, including two heatmaps and one boxplot. The heatmap on the left side is showing consumption frequency grouped by location and date of Jan, while the right side one is by location and hour of the day. On the left side, users can switch the card type to see the heatmap for credit card or loyalty card. The boxplot below is designed to show transaction price of different locations. Users can select card numbers, switch between weekday and weekend, or even select the exact days to customize the charts and explore on details.
+
+```{r fig.cap='EDA for transaction data of credit and loyalty cards', out.width="100%"}
+include_graphics("images/df_t1.1eda.jpg")
+```
+
+## GPS trajectory analysis
+
+The second tab panel is designed to visualize the car GPS tracking data. There are two sub panels named as "GPS Movement Path" and "GPS Data Overview" respectively. The first sub panel is shown as the following figure, displaying the two week trajectories of the specific car. The left plot represents different dates by colors, while the right one representing different time slot of a day by different colors. Users can explore on each car ID and date by selecting from the dropdown list on the left side. Besides, if hover the cursor over the layer logo on the right side map, users could filter shape layer for the target time slot to see the movement path of a specific time period clearly.
+
+```{r fig.cap='Car GPS movement path shown on the city map of Abila', out.width="100%"}
+include_graphics("images/df_t2.1map.jpg")
+```
+
+Another sub panel consist a heatmap revealing the frequency of car tracking data grouped by car ID and hour of days. By checking or unchecking "Weekday" and "Weekend" option, users can focus on weekday or weekend hourly moving frequency of each car.
+
+```{r fig.cap='Houly heatmap of different car tracking data', out.width="100%"}
+include_graphics("images/df_t2.2hm.jpg")
+```
+
+## Owner matching analysis
+
+The third tab panel is very important as it shows the correspondence between owners of cars and credit/loyalty cards. The panel mainly includes three parts, one table on the left and two charts on the right. The table summarized the corresponding relationships of GASTech staff, individual cars and credit/loyalty cards. On the right side, the boxplot is displaying the GPS tracking frequency of cars by hour and date. Users can see the exact record counts bu hover cursor over the box. The line chart shows the transaction record in each day and every location. Users can switch between credit card and loyalty card by click the button above.
+
+Further more, users can make use of the interactivity between the data table and two charts to drill down and visualize the data for each specific staff. By clicking on the data table row, the two charts would automatically show the data of the selected car owner/card holder. This make it easy to do comparison of GPS track data and transaction data within or between employees of GASTech.  
+
+```{r fig.cap='Correspondence between car owner and credit card/loyalty card holder', out.width="100%"}
+include_graphics("images/df_t3.1om.jpg")
+```
+
+## Data tabel
+
+The last tab panel is actually a data table for details of individual transaction record. Credit card and loyalty card transactions are joined together by matching the common consuming  place and date.
+
+```{r fig.cap='Merged transaction data table of credit card and loyalty card', out.width="100%"}
+include_graphics("images/df_t4.1dt.jpg")
+```
+
+The combination of above visualization panels would give users a completed view of data, as well as much freedom to explore and focus on the details of each point. By using these charts and integrating the findings, users could derive more meaningful insights on the abnormal trajectories and transactions with less efforts.
 
 # Use Case
 
