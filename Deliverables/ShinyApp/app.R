@@ -198,7 +198,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                
                # ------Panel EDA
                tabPanel("EDA", value = "eda", fluid = T, icon = icon("chart-bar"),
-                        titlePanel(tags$b("Explorory Data Analysis for transaction data of credit and loyalty cards")),
+                        titlePanel(tags$b("Exploratory Data Analysis for transaction data of credit and loyalty cards")),
                         
                         sidebarLayout(position = "left", fluid = T, 
                                       sidebarPanel(width = 3, fluid = T,
