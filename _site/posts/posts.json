@@ -47,7 +47,7 @@
     "categories": [],
     "contents": "\r\nThe Shiny application is designed and built using shiny and other related packages in R. The link to the Shiny Application can be found here.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-08-07T21:48:05+08:00",
+    "last_modified": "2021-08-09T20:30:21+08:00",
     "input_file": "shinyapp.knit.md"
   },
   {

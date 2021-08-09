@@ -18,5 +18,5 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-The Shiny application is designed and built using `shiny` and other related packages in R. The link to the Shiny Application can be found [here](https://scis.smu.edu.sg/).
+The Shiny application is designed and built using `shiny` and other related packages in R. The link to the Shiny Application can be found [here](https://visualg2g3.shinyapps.io/ShinyApp/).
 
