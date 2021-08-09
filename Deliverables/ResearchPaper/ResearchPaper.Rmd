@@ -67,12 +67,6 @@ It is also a good choice to using a bar plot to visualize the amount or count. B
 
 In summary, it is necessary to check the car tracking details for every car at a different time to get more useful insight. We need to take care of the abnormal activity time, especially large transaction numbers, abnormal overtime work, the arrivals to the same not normal place of different car owners.
 
-
-
-
-
-
-
 # Design of Framework
 
 
@@ -81,12 +75,31 @@ In summary, it is necessary to check the car tracking details for every car at a
 # Use Case
 
 
-
-
 ## Exploration of transaction data 
 
+By checking the heatmap of credit and loyalty transaction frequency, we can see that the employees do have some preference on the locations (figure ?).
 
+![Heatmap of Transaction Frequency of credit card (left) and loyalty card (right)](images/heatmap_cc_loy.png)
 
+The most popular location is Katerina’s Café, then comes to Hippokampos, Guy’s Gyros and Brew’ve Been Served. The former 3 opens 7 days a week while the last one closed at weekends.
+
+Katerina’s Cafe, was very popular on weekdays, seems to have relatively fewer transactions on Fridays and Sundays, and is still popular on Saturdays.
+
+By referring to the tourist map we can see that most of those places are near the company GAS tech and is suitable for meals. The locations of Hippokampos are identified according to the previous work by Middlesex University, it is relatively far from the company. And the Ouzeri Elian and Hallowed Grounds are also quite popular and quite close to the company.
+
+![Location by Hour Heatmap of Transaction Frequency of credir cards on weekdays (left) and weekends (right)](images/heatmap_cc_hourly.png)
+
+Katerina’s Café did not have transactions record before 12 pm and is busy at 13 pm and 20 pm on weekdays, 7-8 pm on weekends. Hippokampos and Guy’s Gyros are the same as Katerina’s Cafe.
+
+Brew’ve Been Served is popular in the morning, around 7-8 am on weekdays. Besides, Hallowed Grounds is also a popular place for breakfast on weekdays as Brew’ve Been Served.
+
+In addition, there are several transactions (5 actually) that happened at 3 am in Kronos Mart. They are from different credit cards, but 1 of them happened on Monday, 4 of them happened on Sunday. Those happened on Sunday, 3 of them happened on Jan 19.
+
+However, the transaction amount of the five records did not show any difference and all ten transactions that happened in Kronos Mart are made from different 10 cards.
+
+![Box Plot of Transaction Price by Location on  weekdays (up) and weekends (down)](images/boxplot.png)
+
+From the boxplot, we can see that people did not go to some places on weekends, and there is one extra-large transaction that happened at Frydos Autosupply n’ More using a credit card, but no such recording on the loyalty card.
 
 ## Analysis of GPS tracking data
 
