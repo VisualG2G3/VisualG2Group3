@@ -186,25 +186,38 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                    
                                                    # ----Boxplot option in tab1
                                                    pickerInput("ccnumt1",
-                                                               "Select card number",
-                                                               choices = list(
-                                                                   `Credit card` = cc_num,
-                                                                   `Loyalty card` = loy_num
-                                                               ),
+                                                               "Select Credit Card number",
+                                                               choices = cc_num,
                                                                multiple = T,
-                                                               selected = cardnum,
-                                                               
+                                                               selected = cc_num,
                                                                options = list(`actions-box` = TRUE,
                                                                               `live-search` = TRUE,
                                                                               style = "btn-secondary",
                                                                               size = 10)),
+                                                   
+                                                   pickerInput("loynumt1",
+                                                               "Select Loyalty Card number",
+                                                               choices = loy_num,
+                                                               multiple = T,
+                                                               selected = loy_num,
+                                                               options = list(`actions-box` = TRUE,
+                                                                              `live-search` = TRUE,
+                                                                              style = "btn-secondary",
+                                                                              size = 10)),
+                                                   
                                                    awesomeCheckboxGroup("wdayt1", "Select Weekday",
-                                                                        choices = c("Mon", "Tue", "Wed", "Thu", "Fri","Sat", "Sun"),
-                                                                        #choiceNames = list("Weekday", "Weekend"),
-                                                                        #choiceValues = list(c("Mon", "Tue", "Wed", "Thu", "Fri"), c("Sat", "Sun")),
-                                                                        selected = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+                                                                        choices = c("Weekday", "Weekend"),
+                                                                        selected = c("Weekday", "Weekend"),
                                                                         status = "secondary",
                                                                         inline = T),
+                                                   
+                                                   # awesomeCheckboxGroup("wdayt1", "Select Weekday",
+                                                   #                      choices = c("Mon", "Tue", "Wed", "Thu", "Fri","Sat", "Sun"),
+                                                   #                      #choiceNames = list("Weekday", "Weekend"),
+                                                   #                      #choiceValues = list(c("Mon", "Tue", "Wed", "Thu", "Fri"), c("Sat", "Sun")),
+                                                   #                      selected = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+                                                   #                      status = "secondary",
+                                                   #                      inline = T),
                                                    
                                                    #pickerInput("wdayt1", "Select weekday",
                                                    #            choices = list(weekday = wd, weekend = wnd),
@@ -362,10 +375,24 @@ server <- function(input, output, session) {
         
         d1 <- filter(cards,
                      card %in% input$cardtypet1,
-                     cardnum %in% input$ccnumt1,
-                     weekday %in% input$wdayt1,
+                     cardnum %in% input$ccnumt1 | cardnum %in% input$loynumt1,
                      day %in% input$dayt1)
         
+        if(length(input$wdayt1) == 1) {
+            
+            if (c(input$wdayt1) == c("Weekend")){
+                d1 <- d1 %>%
+                    dplyr::filter(weekday %in% wnd)
+            }
+            else if (c(input$wdayt1) == c("Weekday")) {
+                d1 <- d1 %>% 
+                    dplyr::filter(weekday %in% wd)
+            } }
+        
+        else if(length(input$wdayt1) == 2){
+            d1
+        }
+
         plot_ly(data = d1, x = ~as.factor(day), y = ~location,
                 hovertemplate = paste(
                     " %{yaxis.title.text}: %{y}<br>",
@@ -382,8 +409,22 @@ server <- function(input, output, session) {
         
         d2 <- filter(cc,
                      last4ccnum %in% input$ccnumt1,
-                     weekday %in% input$wdayt1,
                      day %in% input$dayt1)
+        
+        if(length(input$wdayt1) == 1) {
+            
+            if (c(input$wdayt1) == c("Weekend")){
+                d2 <- d2 %>%
+                    dplyr::filter(weekday %in% wnd)
+            }
+            else if (c(input$wdayt1) == c("Weekday")) {
+                d2 <- d2 %>% 
+                    dplyr::filter(weekday %in% wd)
+            } }
+        
+        else if(length(input$wdayt1) == 2){
+            d2
+        }
         
         plot_ly(data = d2, x = ~as.factor(hour), y = ~location,
                 hovertemplate = paste(
@@ -411,9 +452,23 @@ server <- function(input, output, session) {
         thematic::thematic_shiny()
         
         d <- dplyr::filter(cards,
-                           cardnum %in% input$ccnumt1,
-                           weekday %in% input$wdayt1,
+                           cardnum %in% input$ccnumt1 | cardnum %in% input$loynumt1,
                            day %in% input$dayt1)
+        
+        if(length(input$wdayt1) == 1) {
+            
+            if (c(input$wdayt1) == c("Weekend")){
+                d <- d %>%
+                    dplyr::filter(weekday %in% wnd)
+            }
+            else if (c(input$wdayt1) == c("Weekday")) {
+                d <- d %>% 
+                    dplyr::filter(weekday %in% wd)
+            } }
+        
+        else if(length(input$wdayt1) == 2){
+            d
+        }
         
         plot_ly(data = d,x = ~location, y= ~price, 
                 color = ~card, colors = "Paired",
@@ -551,15 +606,19 @@ server <- function(input, output, session) {
     
     # ------Heatmap in tab2
     output$heatt2 <- renderPlotly({
-        if (input$wdayt2 == c("Weekend")){
-            gps_sf_w <- gps_sf %>% 
-                dplyr::filter(weekday %in% wnd)
-        } 
-        else if (input$wdayt2 == c("Weekday")) {
-            gps_sf_w <- gps_sf %>% 
-                dplyr::filter(weekday %in% wd)
-        } 
-        else if(input$wdayt2 == c("Weekday", "Weekend")){
+        
+        if(length(input$wdayt2) == 1) {
+            
+            if (c(input$wdayt2) == c("Weekend")){
+                gps_sf_w <- gps_sf %>%
+                    dplyr::filter(weekday %in% wnd)
+                }
+            else if (c(input$wdayt2) == c("Weekday")) {
+                gps_sf_w <- gps_sf %>% 
+                    dplyr::filter(weekday %in% wd)
+                } }
+        
+        else if(length(input$wdayt2) == 2){
             gps_sf_w <- gps_sf
             }
         
