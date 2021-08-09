@@ -17,8 +17,19 @@ abstract: |
 bibliography: sigproc.bib
 csl: acm-sig-proceedings.csl
 output: rticles::acm_article
+link-citation: true
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{float} 
+  - \usepackage{caption}
+  - \captionsetup{skip=1pt}
 ---
-
+```{r setup, include=FALSE}
+library(knitr)  # Added by DF
+library(tinytex)
+options(tinytex.verbose = TRUE)
+knitr::opts_chunk$set(echo = FALSE, fig.pos = "H", fig.align='center')
+```
 
 
 # Introduction 
@@ -135,7 +146,7 @@ From the boxplot, we can see that people did not go to some places on weekends, 
 references:
 - id: Yskak2020
   title: Solving disappearance at GASTech with visual analytic techniques
-  author: 
+  author:
   - family: Yskak
     given: Saulet
   type: misc
@@ -145,7 +156,7 @@ references:
     month: 5
 - id: Chen2014
   title: VAST Challenge 2014, Mini-Challenge 2
-  author: 
+  author:
   - family: Chen
     given: Siming
   type: misc
@@ -154,7 +165,7 @@ references:
     year: 2014
 - id: Attfield2014
   title: VAST Challenge 2014, Mini-Challenge 2
-  author: 
+  author:
   - family: Attfield
     given: Simon
   type: misc
