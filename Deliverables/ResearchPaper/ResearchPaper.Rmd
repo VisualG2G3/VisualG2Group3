@@ -5,7 +5,7 @@ author:
     email: fang.dong.2020@mitb.smu.edu.sg
     affiliation: School of Computing and Information Systems, Singapore Management University
   - name: Yin Xiaolan
-    email: bob@example.com
+    email: xiaolan.yin.2020@mitb.smu.edu.sg
     affiliation: School of Computing and Information Systems, Singapore Management University
   - name: Zhang Youzhen
     email: yz.zhang.2020@mitb.smu.edu.sg
@@ -22,17 +22,54 @@ output: rticles::acm_article
 
 
 # Introduction 
-Lorem ipsum dolor sit[@meier2012] amet, consectetur adipiscing[@fenner2012a] elit. Pellentesque rhoncus ut tellus eu tristique. Duis pharetra velit vitae viverra elementum. Nulla metus dui, pulvinar id enim at, pellentesque semper ipsum. Phasellus cursus dignissim ipsum, sed congue orci pretium quis. Maecenas rhoncus leo a cursus euismod. Fusce a erat eu ipsum tristique tempus at sed tortor. Aliquam erat volutpat. Donec at pretium lorem. Donec pretium nunc id nunc bibendum convallis. Phasellus quis enim id massa feugiat egestas hendrerit sollicitudin nibh. Sed blandit eros id tellus porta, eget ullamcorper urna posuere. Pellentesque laoreet lacus nibh, a mattis libero viverra sit amet. Sed vitae diam interdum, pharetra neque sit amet, dictum lectus.
 
-Donec massa justo, ultricies quis facilisis sed, tristique nec metus. Vestibulum id condimentum diam. Integer semper augue id porttitor ultrices. Cras vulputate felis eu diam porttitor, ac pulvinar nisi imperdiet. Donec eros felis, imperdiet vel malesuada at, varius et quam. Phasellus facilisis non risus eu placerat. Sed ac mollis lorem.
+The IEEE Visual Analytics Science and Technology (VAST) Challenge is an annual contest of which the goal is to advance the field of visual analytics through the competition[@Yskak2020]. The VAST Challenge is designed to help participators to understand how their analytic tools would be used in a novel analytic task and determine if their data transformations, visualizations and interactions would be beneficial for solving the challenges.
+
+2021 Mini Vast Challenge 2 presented the scenario:  some Kronos-based employees of GAStech oil and gas company went missing. Car tracking data for the two weeks leading up to the disappearance, as well as credit card transactions and loyalty card usage data related to missing employees are provided. This challenge is concentrated on exploring the anomalies, recognizing the ownership of the cars and cards and identifying suspicious patterns of behaviours by analysing the movement and tracking data, as well as the transaction data. 
+
+In this paper, we aim to leverage the richness of the movement and transactions data to provide an interactive visualisation for exploring suspicious behaviours of GAStech Employee and generating insights.
 
 # Motivation of The Application
-Nullam semper imperdiet orci, at lacinia est aliquet et. Sed justo nibh, aliquet et velit at, pharetra consequat velit. Nullam nec ligula sagittis, adipiscing nisl sed, varius massa. Mauris quam ante, aliquet a nunc et, faucibus imperdiet libero. Suspendisse odio tortor, bibendum vel semper sit amet, euismod ac ante. Nunc nec dignissim turpis, ac blandit massa. Donec auctor massa ac vestibulum aliquam. Fusce auctor dictum lobortis. Vivamus tortor augue, convallis quis augue sit amet, laoreet tristique quam. Donec id volutpat orci. Suspendisse at mi vel elit accumsan porta ac ut diam. Nulla ut dapibus quam.
 
-Sed est odio, ornare in rutrum et, dapibus in urna. Suspendisse varius massa in ipsum placerat, quis tristique magna consequat. Suspendisse non convallis augue. Quisque fermentum justo et lorem volutpat euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi sagittis interdum justo, eu consequat nisi convallis in. Sed tincidunt risus id lacinia ultrices. Phasellus ac ligula sed mi mattis lacinia ac non felis. Etiam at dui tellus.
+The task of Mini Challenge 2 is to explore anomalies and get meaningful insights based on the given dataset to help the investigation of the incident. As the tracking data provided here are geospatial data with aspatial information, a good way to present the movement information is to show the path on the map. 
+
+To identify the anomalies of transactions for credit cards and loyalty cards, we need to compare the detailed transaction information including the location, date and price. Also, in order to identify the owners of cars and cards, looking at the tacking data for each car is inevitable. Instead of generating tracking for each car, an interactive visualisation application which allows user to select carID and timeslots they would look at is more efficient and helpful.
+
+With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.  
+
+There are three key aspects in this interactive visualisation application,
+
+1.	Transactions exploration 
+2.	Gps Map
+3.	Ownership of car and cards
 
 # Review of Previous Work
-Duis nec purus sed neque porttitor tincidunt vitae quis augue. Donec porttitor aliquam ante, nec convallis nisl ornare eu. Morbi ut purus et justo commodo dignissim et nec nisl. Donec imperdiet tellus dolor, vel dignissim risus venenatis eu. Aliquam tempor imperdiet massa, nec fermentum tellus sollicitudin vulputate. Integer posuere porttitor pharetra. Praesent vehicula elementum diam a suscipit. Morbi viverra velit eget placerat pellentesque. Nunc congue augue non nisi ultrices tempor.
+
+We read some products of VAST Challenge 2014 since that challenge has the same theme as VAST Challenge 2021. The works are listed in the Visual Analytics Benchmark Repository. In addition, we also referred to some research papers.
+
+The product of Peking University[@Chen2014] received the award of Excellent Comprehensive Visual Analysis System. Here are what we learned from them.
+
+Heatmap is useful for analyzing the population of the locations. The shade of the color can represent the frequency of transactions that happened in a specific location. For example, the darker the color, the more the transactions, the more popular the location is.
+
+Weekdays and weekends may have different patterns. People need to work and go to the company on weekdays, while they usually arrange the shopping or other entertainment on weekends. If we do not consider this, some of the anomalies cannot be found.
+
+Instead of analyzing the coordinate number, it is more straightforward to display the car tracking data on the map. Also, we need to notice that different periods (weekdays or weekends) have different traffic patterns.
+
+In the GPS data analysis part, not only is the day type very important, but also the different periods of the day. For example, the employee goes to the company on weekdays is very common, but the employee go to the company at midnight or early morning is not that normal. We can segment the car tracking data by the different periods in a day to see the details.
+
+In addition, the data table is a good way to show and explain the result.
+
+Finally, QGIS is an appropriate software to  operate the jpg image so that it is combined with the geospatial data. Then it is possible to plot the car tracking data to the map.
+
+The product of Middlesex University[@Attfield2014] was awarded as Honorable Mention: Effective Use of a Custom Tool. There is one detailed map, where includes some locations that do not appear in the given tourist jpg images. We can refer to this one when needed.
+
+It is also a good choice to using a bar plot to visualize the amount or count. But it is not good to use 3D format, it will make the figure difficult to recognize the amount. Also, it is not wise to show the x-axis label vertical since readers cannot read them conveniently.
+
+In summary, it is necessary to check the car tracking details for every car at a different time to get more useful insight. We need to take care of the abnormal activity time, especially large transaction numbers, abnormal overtime work, the arrivals to the same not normal place of different car owners.
+
+
+
+
 
 
 
@@ -83,31 +120,34 @@ Duis nec purus sed neque porttitor tincidunt vitae quis augue. Donec porttitor a
 
 ---
 references:
-- id: meier2012
-  title: Professinal Android 4 Application Development
+- id: Yskak2020
+  title: Solving disappearance at GASTech with visual analytic techniques
   author: 
-  - family: Meier
-    given: Reto
-  type: book
-  publisher: John Wiley & Sons, Inc.
+  - family: Yskak
+    given: Saulet
+  type: misc
+  note: 'https://openscholarship.wustl.edu/cse_research/1183?utm_source=openscholarship.wustl.edu%2Fcse_research%2F1183&utm_medium=PDF&utm_campaign=PDFCoverPages'
   issued:
-    year: 2012
+    year: 2020
     month: 5
-- id: fenner2012a
-  title: One-click science marketing
-  author:
-  - family: Fenner
-    given: Martin
-  container-title: Nature Materials
-  volume: 11
-  URL: 'https://doi.org/10.1038/nmat3283'
-  DOI: 10.1038/nmat3283
-  issue: 4
-  publisher: Nature Publishing Group
-  page: 261-263
-  type: article-journal
+- id: Chen2014
+  title: VAST Challenge 2014, Mini-Challenge 2
+  author: 
+  - family: Chen
+    given: Siming
+  type: misc
+  note: 'http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC2%20-%20Patterns%20of%20Life%20Analysis/'
   issued:
-    year: 2012
-    month: 3
+    year: 2014
+- id: Attfield2014
+  title: VAST Challenge 2014, Mini-Challenge 2
+  author: 
+  - family: Attfield
+    given: Simon
+  type: misc
+  note: 'http://visualdata.wustl.edu/varepository/VAST%20Challenge%202014/challenges/MC2%20-%20Patterns%20of%20Life%20Analysis/entries/Middlesex%20University/'
+  issued:
+    year: 2014
+
 ...
 
