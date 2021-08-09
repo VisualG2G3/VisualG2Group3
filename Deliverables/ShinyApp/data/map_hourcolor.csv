@@ -1,0 +1,9 @@
+﻿Layer Name,Timeslot,Color
+early morning,12-5AM,red
+morning,6-8AM,gray
+morning work,9AM,orange
+noon,10AM-2PM,blue
+afternoon,3-4PM,yellow
+back home,5PM,green
+evening,6-9PM,purple
+midnight,10-11PM,black

@@ -29,6 +29,7 @@ library(tidyverse)
 # loyalty <- read_csv("Deliverables/ShinyApp/data/loyalty_data.csv",
 #                    locale = locale(encoding = "windows-1252"))
 # gps <- readRDS("Deliverables/ShinyApp/data/gps_rds")
+# map_hourcolor <- read_csv("Deliverables/ShinyApp/data/map_hourcolor.csv")
 
 ## For Shiny
 car_ass <- read_csv("data/car-assignments.csv")
@@ -37,6 +38,7 @@ cc <- read_csv("data/cc_data.csv",
                locale = locale(encoding = "windows-1252"))
 loyalty <- read_csv("data/loyalty_data.csv",
                     locale = locale(encoding = "windows-1252"))
+map_hourcolor <- read_csv("data/map_hourcolor.csv")
 
 
 # --------Edit columns
@@ -98,6 +100,9 @@ gps_path2 <- cbind(gps_path, np) %>%
 
 
 # --------Join owner matching result between car assignment and cards number
+# owner_match_ori <- read_csv("Deliverables/ShinyApp/data/car-card-match.csv") %>%
+#     dplyr::rename("Credit card num" = "CC", "Loyalty card num" = "Loyalty")
+
 owner_match_ori <- read_csv("data/car-card-match.csv") %>%
     dplyr::rename("Credit card num" = "CC", "Loyalty card num" = "Loyalty")
 
@@ -109,6 +114,8 @@ owner_match <- left_join(car_ass, owner_match_ori, by = "CarID",
     dplyr::rename("Current Employment Type" = "CurrentEmploymentType",
                   "Current Employment Title" = "CurrentEmploymentTitle",
                   "Last Name" = "LastName", "First Name" = "FirstName")
+owner_match <- owner_match[c(3,6,7,1,2,4,5)] %>%
+    filter(is.na(CarID) == F)
 
 matchres <- merge(owner_match_ori, cc, 
                   by.x = "Credit card num", by.y = "last4ccnum", 
@@ -312,8 +319,10 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                                             tmapOutput("gps2",
                                                                                        width = "100%",
                                                                                        height = "650px"
+                                                                                       ),
+                                                                            dataTableOutput("map_color", width = "100%", height = "300px")
                                                                             )
-                                                                     ))
+                                                                     )
                                                             )
                                                             ,
                                                             
@@ -604,6 +613,17 @@ server <- function(input, output, session) {
         
     })
     
+    
+    output$map_color <- renderDataTable({
+        thematic::thematic_shiny()
+        DT::datatable(map_hourcolor,
+                      filter = c("none"), selection = c("none"), class = "hover",
+                      caption = "*Mapping of colors in each time slot of the day ",
+                      options = list(dom = "t")
+                      )
+        
+    })
+    
     # ------Heatmap in tab2
     output$heatt2 <- renderPlotly({
         
@@ -646,10 +666,10 @@ server <- function(input, output, session) {
     output$matcht3 <- renderDataTable({
         thematic::thematic_shiny()
         DT::datatable(owner_match, filter = c("top"),
-                      class = "hover",
-                      extensions="Scroller",
-                      options = list(#pageLength = 9,
-                          scroller=TRUE, scrollY=550,deferRender=TRUE
+                      class = "hover", rownames = F,
+                      extensions= "Scroller",
+                      options = list(dom = "tf", scrollX = TRUE,
+                          scroller=TRUE, scrollY=570, deferRender=TRUE
                       )
         )
     }, server = FALSE)
