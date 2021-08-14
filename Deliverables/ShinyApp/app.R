@@ -50,7 +50,7 @@ gps$Timestamp = mdy_hms(gps$Timestamp)
 cc$timestamp = mdy_hm(cc$timestamp)
 loyalty$timestamp = mdy(loyalty$timestamp)
 cb_cc_loy$timestamp = dmy_hm(cb_cc_loy$timestamp)
-cb_cc_loy$date = dmy(cb_cc_loy$date)
+cb_cc_loy$date_new = dmy(cb_cc_loy$date_new)
 
 ## Revise data type
 car_ass$CarID = as.character(car_ass$CarID)
@@ -112,7 +112,7 @@ owner_match_ori <- read_csv("data/car-card-match.csv") %>%
     dplyr::rename("Credit card num" = "CC", "Loyalty card num" = "Loyalty")
 
 owner_match_ori$`Credit card num` = as.character(owner_match_ori$`Credit card num`)
-owner_match_ori$CarID = as.character(owner_match_ori$CarID)
+owner_match_ori$CarID = factor(owner_match_ori$CarID, levels = c(car_id))
 
 owner_match <- left_join(car_ass, owner_match_ori, by = "CarID", 
                          na_matches = "never") %>%
@@ -139,7 +139,7 @@ names(matchres)[12] <- "price_loy"
 # --------Join transaction data of credit card and loyalty card
 cb_cc_loy$last4ccnum = as.character(cb_cc_loy$last4ccnum)
 cb_cc_loy <- cb_cc_loy %>%
-    select(-"X1")
+    select(-c("X1","date"))
 
 cbccloy <- left_join(cb_cc_loy, owner_match_ori, 
                      by= c("last4ccnum" = "Credit card num",
@@ -147,13 +147,13 @@ cbccloy <- left_join(cb_cc_loy, owner_match_ori,
                      na_matches = "never") %>%
     rename("Datatime (credit card)" = "timestamp", "Location" = "location",
            "Price" = "price", "Credit card num" = "last4ccnum",
-           "Loyalty card num" = "loyaltynum", "Date (loyalty card)" = "date")
+           "Loyalty card num" = "loyaltynum", "Date (loyalty card)" = "date_new")
 
 #cbccloy$`Date (loyalty)` = dmy(cbccloy$`Date (loyalty)`)
-cbccloy$`Weekday` = wday(cbccloy$`Date (loyalty card)`, label = T, abbr = T)
-#cbccloy$`Weekday (credit)` = wday(cbccloy$`Datatime (credit)`, label = T, abbr = T)
+cbccloy$`Weekday (loyalty card)` = wday(cbccloy$`Date (loyalty card)`, label = T, abbr = T)
+cbccloy$`Weekday (credit card)` = wday(cbccloy$`Datatime (credit card)`, label = T, abbr = T)
 
-cbccloy <- cbccloy[c(2,3,4,6,1,5,8,7)]
+cbccloy <- cbccloy[c(2,3,4,1,9,5,6,8,7)]
 
 
 # --------All global parameters
@@ -195,11 +195,22 @@ ui <- fluidPage(#shinythemes::themeSelector(),
     #theme = shinytheme("simplex"),
     
     # ------Navigation Bar
-    navbarPage("Exploring Abnormal Trajectories and Transactions of GAStech Employees", 
+    navbarPage("EATTGE", 
                fluid = T, windowTitle="VAST Challenge 2021 Mini Challenge 2", 
                selected="eda",
                
-               #navlistPanel("ATTGE", selected="eda", fluid = T, widths = c(2,10),
+               # ------Panel Overview
+               tabPanel("Instruction", value = "instr", fluid = T, icon = icon("book"),
+                        titlePanel(tags$b("An Application for Exploring Abnormal Trajectories and Transactions of GAStech Employees")),
+                        fluidRow(column(width = 6,
+                                        h4("About"),
+                                        p("This Shiny App is desin")),
+                                 column(width = 6)
+                            
+                        )
+                    
+               ),
+               
                
                # ------Panel EDA
                tabPanel("EDA", value = "eda", fluid = T, icon = icon("chart-bar"),
@@ -707,7 +718,8 @@ server <- function(input, output, session) {
                       class = "hover", rownames = F,
                       extensions= "Scroller",
                       options = list(dom = "t", scrollX = TRUE,
-                          scroller=TRUE, scrollY=600, deferRender=TRUE
+                          scroller=TRUE, scrollY=600, deferRender=TRUE,
+                          search = list(regex = TRUE)
                       )
         )
     }, server = FALSE)
