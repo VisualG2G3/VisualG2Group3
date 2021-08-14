@@ -20,7 +20,7 @@ library(tidyverse)
 
 
 # --------Import data
-
+# 
 # car_ass <- read_csv("Deliverables/ShinyApp/data/car-assignments.csv")
 # #gps <- read_csv("Deliverables/ShinyApp/data/gps.csv")
 # #saveRDS(gps, file = "Deliverables/ShinyApp/data/gps_rds")
@@ -28,13 +28,15 @@ library(tidyverse)
 #            locale = locale(encoding = "windows-1252"))
 # loyalty <- read_csv("Deliverables/ShinyApp/data/loyalty_data.csv",
 #                    locale = locale(encoding = "windows-1252"))
-# gps <- readRDS("Deliverables/ShinyApp/data/gps_rds")
+# gps <- readRDS("Deliverables/ShinyApp/data/gps_rds") %>%
+#   filter(id < 100)
 # map_hourcolor <- read_csv("Deliverables/ShinyApp/data/map_hourcolor.csv")
 # cb_cc_loy <- read_csv("Deliverables/ShinyApp/data/combine_cc_loyalty.csv", locale = locale(encoding = "windows-1252"))
 
 ## For Shiny
 car_ass <- read_csv("data/car-assignments.csv")
-gps <- readRDS("data/gps_rds")
+gps <- readRDS("data/gps_rds") %>%
+    filter(id < 100)
 cc <- read_csv("data/cc_data.csv",
                locale = locale(encoding = "windows-1252"))
 loyalty <- read_csv("data/loyalty_data.csv",
@@ -114,7 +116,7 @@ owner_match_ori <- read_csv("data/car-card-match.csv") %>%
     dplyr::rename("Credit card num" = "CC", "Loyalty card num" = "Loyalty")
 
 owner_match_ori$`Credit card num` = as.character(owner_match_ori$`Credit card num`)
-owner_match_ori$CarID = factor(owner_match_ori$CarID, levels = c(car_id))
+owner_match_ori$CarID = as.character(owner_match_ori$CarID)
 
 owner_match <- left_join(car_ass, owner_match_ori, by = "CarID", 
                          na_matches = "never") %>%
@@ -123,6 +125,7 @@ owner_match <- left_join(car_ass, owner_match_ori, by = "CarID",
                   "Last Name" = "LastName", "First Name" = "FirstName")
 owner_match <- owner_match[c(3,6,7,1,2,4,5)] %>%
     filter(is.na(CarID) == F)
+owner_match$CarID = factor(owner_match$CarID, levels = c(car_id))
 
 matchres <- merge(owner_match_ori, cc, 
                   by.x = "Credit card num", by.y = "last4ccnum", 
