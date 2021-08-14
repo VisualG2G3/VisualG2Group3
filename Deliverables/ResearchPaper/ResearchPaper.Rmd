@@ -167,8 +167,25 @@ From the boxplot, we can see that people did not go to some places on weekends, 
 
 ## Analysis of GPS tracking data
 
+From the GPS overview heatmap, we can check the number of recordings of different cars in different hours. If we focus on the recordings that happened after 10 pm on weekdays, we can check those cars in the GPS movement path.
 
+```{r fig.cap='Hourly heatmap of different car tracking data on weekdays', out.width="100%"}
+include_graphics("images/gpsoverviewhm.png")
+```
 
+In the GPS path movement, the color of the dots represents the different periods (details in the following table).
+
+```{r fig.cap='Mapping of colors in each time slot of the day', out.width="100%"}
+include_graphics("images/gpsmaptable.png")
+```
+
+First, we select all weekdays and check car 1, we can see there are some black dots, which means the car movement recordings happened after 10 pm. We can refer to the left figure to check the day number and then only select the specific day to see more details.
+
+```{r fig.cap='Steps of the GPS data exploration', out.width="100%"}
+include_graphics("images/gpsanalysis.png")
+```
+
+We can find that there are several employees get together on the evening of Jan 10. The details can be found on 6.2.2 evening grouping on Jan10.
 
 ## Inference for the owners of cards
 
@@ -212,7 +229,7 @@ Combining the analysis above and the car assignment information, we can get the 
 include_graphics("images/boxplot.png")
 ```
 
-# Discussion And Insight:
+# Discussion And Insight
 
 ## Informal relationship identification
 
@@ -260,24 +277,34 @@ We can see they are all Information Technology or Engineering employees, but not
 
 ### security???
 
-## other abnormal place: Kronos Mart
+## another abnormal place: Kronos Mart
 
-There are several transactions (5 actually) that happened at 3 am in Kronos Mart, which is quite abnormal cause the mart generally doesn’t open at that time. They are from different credit cards, 1 of them happened on Monday, 4 of them happened on Sunday. Those happened on Sunday, 3 of them happened on Jan 19.
+From the heatmap, we can see that there are several transactions (5 actually) that happened at 3 am in Kronos Mart, which is quite abnormal cause the mart generally doesn’t open at that time. They are from different credit cards, 1 of them happened on Monday, 4 of them happened on Sunday. Those happened on Sunday, 3 of them happened on Jan 19.
+
+```{r fig.cap='Heatmap of transactions frequency on specific days', out.width="100%"}
+include_graphics("images/kronosmarthm.png")
+```
 
 However, the transaction amount of the five records did not show any difference and all ten transactions that happened in Kronos Mart are made from different 10 cards.
 
-In addition, the logic of our credit card and loyalty card matching is introduced before in the use case. After we get the matching result, we will generate the result for all transactions. We can see that on Kronos Mart, the transaction price is matched but the transaction time is always credit card one day later than loyalty card.
+```{r fig.cap='Transaction data table of credit card and loyalty card on Kronos Mart', out.width="100%"}
+include_graphics("images/kronosmarttable.png")
+```
 
-in addition, 
+In addition, the logic of our credit card and loyalty card matching is introduced before in the use case. After we get the matching result, we will generate the result for all transactions. We can see that on Kronos Mart, the transaction price is matched but the transaction time is always credit card one day later than loyalty card. So the transactions will appear on the table twice. Maybe there are some delays in the transactions that happened on Kronos Mart using credit cards.
 
 # Future Work
 
 ## further explore the geospatial data
 
-for Daily Dealz, there is only one transaction that happened at 6 am on Monday, Jan 13. And if we check the last 4 cc numbers, we can see that the owner of this card had a transaction that happened at 3 am in Kronos Mart on Sunday, Jan 19. Also, the amount is specially small (2.01).
+For Daily Dealz, there is only one transaction that happened at 6 am on Monday, Jan 13. And if we check the last 4 cc numbers, we can see that the owner of this card had a transaction that happened at 3 am in Kronos Mart on Sunday, Jan 19. Also, the amount is specially small (2.01).
 
 ```{r fig.cap='Transaction happened in Daily Dealz', out.width="100%"}
 include_graphics("images/Dailydealzhm.png")
+```
+
+```{r fig.cap='Transaction happened in Daily Dealz', out.width="100%"}
+include_graphics("images/Dailydealztable.png")
 ```
 
 We cannot find the place in the given picture and then cannot do further analysis. In the future maybe we can explore the previous work and try different ways to process the file and get those locations or find the locations directly.
