@@ -11,9 +11,8 @@ author:
     email: yz.zhang.2020@mitb.smu.edu.sg
     affiliation: School of Computing and Information Systems, Singapore Management University
 abstract: |
-  This is the abstract.
+  Interactive visualization plays a major role in solving complex problems since it provides a visual summary of data that makes it easier to identify trends and patterns. In this master project, we propose a web – based visual analytics tool that enables to analyze complex purchase records and GPS data and gain valuable insights. The visual analytics framework uses test data from IEEE VAST Challenge 2021: Mini challenge 2 that concentrated on the information about their credit card purchases and preferences as recorded on loyalty cards as well as movement and tracking of employees working for GAStech company. Besides, the tool provides a summary for the owners of each credit card and loyalty card. The analytics tool is mainly built upon R libraries: Shiny, plotly, raster, mapview, tidayverse, tmap, DT.
 
-  It consists of two paragraphs.
 bibliography: sigproc.bib
 csl: acm-sig-proceedings.csl
 output: rticles::acm_article
@@ -196,7 +195,7 @@ As the transaction records on loyalty card are generated from the transactions o
 Therefore, we merge transactions on credit card with transactions on loyalty card together based on the transactions with same location, transaction date and price to identify the credit card and its corresponding loyalty card. A new transaction records would be generated including both credit card number and loyalty card number for each transaction as shown below.
 
 ```{r fig.cap='Credit card and Loyalty card Matching', out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/card_matching.png")
 ```
 
 ### Infering the owner of vehicle and Credit card
@@ -204,29 +203,29 @@ include_graphics("images/boxplot.png")
 The main basis of our inference for the owners of credit card and loyalty card is that the owner visited the location around the time when the transactions produced in terms of the movement events of their vehicles. To infer the ownership of cards, firstly, we need to find out the accurate time transactions produced on each location based on the transaction records. The timestamps would be used for select out the vehicle which went to the location in the specific timeslots using the interactive GPS visualisation application. According to the combination of the exploration of transactions and tracking events, we can link the car id with credit card number and loyalty card number together easily. After taking the owner of car into consideration, A clear relationship among car id, credit card, loyalty card and owner's information would be presented.
 
 ```{r fig.cap='Inference for the owners of cards', out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/owner_infer.png")
 ```
 
 To better present the way we use to infer the owners of each credit card and loyalty card, we provide a example here to elaborate more. For the location Albert's Fine Clothing, there are two transaction produced on 6 Jan around 9 pm and  we can easily find out the cars with id 1 and 24 visit there at that moments by tracking movement event for each car using interactive GPS application. In order to differentiate these two cars, we track the movement event for each car on both 6 Jan and 9 Jan together as the credit card with last four number 4434 also has a purchase record on 9 Jan while the credit card with last four number 9551 just purchase on 6 Jan.
 
 ```{r fig.cap="Transactions for Albert's Fine Clothing", out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/Clothing_0.png")
 ```
 
 ```{r fig.cap="Tracking Movement for Cars going to Albert's Fine Clothing on 6 Jan around Transactions' Timestamp", out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/Clothing_1.png")
 ```
 
 Similarly, there is only one transactions produced on 7 Jan and 8 Jan. The car with id 11 and  the car with id 3 visit this location around the purchased time on 7 Jan and 8 Jan, respectively in terms of the Transactions and GPS visualisation application.
 
 ```{r fig.cap="Tracking Movement for Cars going to Albert's Fine Clothing on 7 Jan and 8 Jan around Transactions' Timestamp", out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/Clothing_2.png")
 ```
 
 Combining the analysis above and the car assignment information, we can get the relationships shown below.
 
 ```{r fig.cap='The matching result for owners of cards and cars', out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/matching_result.png")
 ```
 
 # Discussion And Insight
@@ -239,11 +238,11 @@ The transactions are often produced around 13pm on weekdays and What can't be ig
 Therefore, we infer that Elsa and Brand are not only colleagues, but also in a relationship or couples.
 
 ```{r fig.cap='Transations for Chostus Hotel', out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/Hotel_0.png")
 ```
 
 ```{r fig.cap='Owenrships of Credit Cards with last for number 2540 and 9683', out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/Hotel_1.png")
 ```
 
 ## activities
@@ -255,11 +254,11 @@ If we go through the tracking events for each car, it can be easily found that a
 Hence, we infer that this was a team building activity and they had lunch together. Also, the SVP/CFO paid the bill with business payment channel instead of using the personal credit card, which explains the reason why there is no transaction records on their personal credit cards.
 
 ```{r fig.cap='Tracking of cars went to Roberts and Sons on 13 January around 13pm', out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/Roberts_0.png")
 ```
 
 ```{r fig.cap='Transactions for Roberts and Sons', out.width="100%"}
-include_graphics("images/boxplot.png")
+include_graphics("images/Roberts_1.png")
 ```
 
 ### evening grouping on Jan 10
@@ -272,10 +271,25 @@ include_graphics("images/jan10grouping.png")
 
 We can see they are all Information Technology or Engineering employees, but not all employees of these two departments took part in that grouping. The assumption is that those have a good relationship in the two departments had these party in the home of one of them.
 
+### Security gather around Executive's home
 
+According to the GPS path, we observe that some employees visit the same location at the mid-night and wee hours of on different date. The ids of these cars are 15, 16, 21 and 24. The location they go around is the home of the owner of car with id 4. Taking the owners of car into consideration, we can know that employees from Security department appear around the location of the house of Barranco, an executive of GAStech at the late night and wee hours from 6 Jan to 11 Jan. 
 
+```{r fig.cap="Location of Executive's home", out.width="100%"}
+include_graphics("images/security_0.png")
+```
 
-### security???
+```{r fig.cap="Security gather around Executive's home", out.width="100%"}
+include_graphics("images/security_1.png")
+```
+
+As the movement the security go around Barranco'home is so suspicious, we infer that the Security was monitor the executive's behaviour after work from 6 Jan to 11 Jan.
+### Weekends grouping at Katherina’s Cafe
+Katherina’s Café is so close to GAStech that it is popular among GASTech staff. They always go there for lunch and most of transactions produced around 13pm on every weekday explains that. However, we find that there still some transactions produced from 7 pm to 8 pm on last two Saturdays, then we infer that the employees had weekends grouping for parties there.
+
+```{r fig.cap='Transactions at Katherina’s Cafe on Saturday', out.width="100%"}
+include_graphics("images/weekends_grouping.png")
+```
 
 ## another abnormal place: Kronos Mart
 
