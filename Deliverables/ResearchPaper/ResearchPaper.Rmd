@@ -212,9 +212,9 @@ Combining the analysis above and the car assignment information, we can get the 
 include_graphics("images/boxplot.png")
 ```
 
-# Discussion And Insight: Informal relationship and activity identification
+# Discussion And Insight:
 
-## Informal relationship 
+## Informal relationship identification
 
 According to the card transactions, we can find that there are totally nine transactions produced at Chostus Hotel in the past two weeks. What's more, the transactions are always produced from the credit card with last four number 2540 and the credit card with last four number 9683 except the transaction produced on 18 Jan.
 The transactions are often produced around 13pm on weekdays and What can't be ignored is that the timestamp of transaction from the two cards is so close to each other that we are confident that the owners of the two cards went there together for lunch. The owners of cards are Elsa and Brand based on the ownership of cards we found in previous section. 
@@ -229,7 +229,7 @@ include_graphics("images/boxplot.png")
 include_graphics("images/boxplot.png")
 ```
 
-## abnormal locations
+## activities
 
 ### Robert and sons
 
@@ -245,17 +245,40 @@ include_graphics("images/boxplot.png")
 include_graphics("images/boxplot.png")
 ```
 
-### Kronos Mart
+### evening grouping on Jan 10
+
+We check the tracking data of all the cars on Jan 10 and found that some of them came to the same places and stayed together for some time. The period they stayed is shown below the figure, most of them started from around 7 pm and ended at around 11 pm.
+
+```{r fig.cap='Evening grouping on Jan 10', out.width="100%"}
+include_graphics("images/jan10grouping.png")
+```
+
+We can see they are all Information Technology or Engineering employees, but not all employees of these two departments took part in that grouping. The assumption is that those have a good relationship in the two departments had these party in the home of one of them.
+
+
+
+
+### security???
+
+## other abnormal place: Kronos Mart
 
 There are several transactions (5 actually) that happened at 3 am in Kronos Mart, which is quite abnormal cause the mart generally doesn’t open at that time. They are from different credit cards, 1 of them happened on Monday, 4 of them happened on Sunday. Those happened on Sunday, 3 of them happened on Jan 19.
 
 However, the transaction amount of the five records did not show any difference and all ten transactions that happened in Kronos Mart are made from different 10 cards.
+
+In addition, the logic of our credit card and loyalty card matching is introduced before in the use case. After we get the matching result, we will generate the result for all transactions. We can see that on Kronos Mart, the transaction price is matched but the transaction time is always credit card one day later than loyalty card.
+
+in addition, 
 
 # Future Work
 
 ## further explore the geospatial data
 
 for Daily Dealz, there is only one transaction that happened at 6 am on Monday, Jan 13. And if we check the last 4 cc numbers, we can see that the owner of this card had a transaction that happened at 3 am in Kronos Mart on Sunday, Jan 19. Also, the amount is specially small (2.01).
+
+```{r fig.cap='Transaction happened in Daily Dealz', out.width="100%"}
+include_graphics("images/Dailydealzhm.png")
+```
 
 We cannot find the place in the given picture and then cannot do further analysis. In the future maybe we can explore the previous work and try different ways to process the file and get those locations or find the locations directly.
 
