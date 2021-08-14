@@ -137,7 +137,9 @@ The combination of above visualization panels would give users a completed view 
 
 By checking the heatmap of credit and loyalty transaction frequency, we can see that the employees do have some preference on the locations (figure ?).
 
-![Heatmap of Transaction Frequency of credit card (left) and loyalty card (right)](images/heatmap_cc_loy.png)
+```{r fig.cap='Heatmap of Transaction Frequency of credit card (left) and loyalty card (right)', out.width="100%"}
+include_graphics("images/heatmap_cc_loy.png")
+```
 
 The most popular location is Katerina’s Café, then comes to Hippokampos, Guy’s Gyros and Brew’ve Been Served. The former 3 opens 7 days a week while the last one closed at weekends.
 
@@ -145,7 +147,9 @@ Katerina’s Cafe, was very popular on weekdays, seems to have relatively fewer 
 
 By referring to the tourist map we can see that most of those places are near the company GAS tech and is suitable for meals. The locations of Hippokampos are identified according to the previous work by Middlesex University, it is relatively far from the company. And the Ouzeri Elian and Hallowed Grounds are also quite popular and quite close to the company.
 
-![Location by Hour Heatmap of Transaction Frequency of credir cards on weekdays (left) and weekends (right)](images/heatmap_cc_hourly.png)
+```{r fig.cap='Location by Hour Heatmap of Transaction Frequency of credir cards on weekdays (left) and weekends (right)', out.width="100%"}
+include_graphics("images/heatmap_cc_hourly.png")
+```
 
 Katerina’s Café did not have transactions record before 12 pm and is busy at 13 pm and 20 pm on weekdays, 7-8 pm on weekends. Hippokampos and Guy’s Gyros are the same as Katerina’s Cafe.
 
@@ -155,7 +159,9 @@ In addition, there are several transactions (5 actually) that happened at 3 am i
 
 However, the transaction amount of the five records did not show any difference and all ten transactions that happened in Kronos Mart are made from different 10 cards.
 
-![Box Plot of Transaction Price by Location on  weekdays (up) and weekends (down)](images/boxplot.png)
+```{r fig.cap='Box Plot of Transaction Price by Location on  weekdays (up) and weekends (down)', out.width="100%"}
+include_graphics("images/boxplot.png")
+```
 
 From the boxplot, we can see that people did not go to some places on weekends, and there is one extra-large transaction that happened at Frydos Autosupply n’ More using a credit card, but no such recording on the loyalty card.
 
@@ -164,28 +170,98 @@ From the boxplot, we can see that people did not go to some places on weekends, 
 
 
 
-## Match ownership
+## Inference for the owners of cards
 
+### Matching credit card and loyalty card
 
+As the transaction records on loyalty card are generated from the transactions on credit card, the detailed information for each transaction recorded on loyalty card should have same location, purchase time and price as records on credit card.
 
+Therefore, we merge transactions on credit card with transactions on loyalty card together based on the transactions with same location, transaction date and price to identify the credit card and its corresponding loyalty card. A new transaction records would be generated including both credit card number and loyalty card number for each transaction as shown below.
 
-## Informal relationship identification
+```{r fig.cap='Credit card and Loyalty card Matching', out.width="100%"}
+include_graphics("images/boxplot.png")
+```
 
+### Infering the owner of vehicle and Credit card
 
+The main basis of our inference for the owners of credit card and loyalty card is that the owner visited the location around the time when the transactions produced in terms of the movement events of their vehicles. To infer the ownership of cards, firstly, we need to find out the accurate time transactions produced on each location based on the transaction records. The timestamps would be used for select out the vehicle which went to the location in the specific timeslots using the interactive GPS visualisation application. According to the combination of the exploration of transactions and tracking events, we can link the car id with credit card number and loyalty card number together easily. After taking the owner of car into consideration, A clear relationship among car id, credit card, loyalty card and owner's information would be presented.
 
+```{r fig.cap='Inference for the owners of cards', out.width="100%"}
+include_graphics("images/boxplot.png")
+```
 
+To better present the way we use to infer the owners of each credit card and loyalty card, we provide a example here to elaborate more. For the location Albert's Fine Clothing, there are two transaction produced on 6 Jan around 9 pm and  we can easily find out the cars with id 1 and 24 visit there at that moments by tracking movement event for each car using interactive GPS application. In order to differentiate these two cars, we track the movement event for each car on both 6 Jan and 9 Jan together as the credit card with last four number 4434 also has a purchase record on 9 Jan while the credit card with last four number 9551 just purchase on 6 Jan.
 
-# Discussion And Insight 
+```{r fig.cap="Transactions for Albert's Fine Clothing", out.width="100%"}
+include_graphics("images/boxplot.png")
+```
 
+```{r fig.cap="Tracking Movement for Cars going to Albert's Fine Clothing on 6 Jan around Transactions' Timestamp", out.width="100%"}
+include_graphics("images/boxplot.png")
+```
 
+Similarly, there is only one transactions produced on 7 Jan and 8 Jan. The car with id 11 and  the car with id 3 visit this location around the purchased time on 7 Jan and 8 Jan, respectively in terms of the Transactions and GPS visualisation application.
 
+```{r fig.cap="Tracking Movement for Cars going to Albert's Fine Clothing on 7 Jan and 8 Jan around Transactions' Timestamp", out.width="100%"}
+include_graphics("images/boxplot.png")
+```
 
+Combining the analysis above and the car assignment information, we can get the relationships shown below.
+
+```{r fig.cap='The matching result for owners of cards and cars', out.width="100%"}
+include_graphics("images/boxplot.png")
+```
+
+# Discussion And Insight: Informal relationship and activity identification
+
+## Informal relationship 
+
+According to the card transactions, we can find that there are totally nine transactions produced at Chostus Hotel in the past two weeks. What's more, the transactions are always produced from the credit card with last four number 2540 and the credit card with last four number 9683 except the transaction produced on 18 Jan.
+The transactions are often produced around 13pm on weekdays and What can't be ignored is that the timestamp of transaction from the two cards is so close to each other that we are confident that the owners of the two cards went there together for lunch. The owners of cards are Elsa and Brand based on the ownership of cards we found in previous section. 
+
+Therefore, we infer that Elsa and Brand are not only colleagues, but also in a relationship or couples.
+
+```{r fig.cap='Transations for Chostus Hotel', out.width="100%"}
+include_graphics("images/boxplot.png")
+```
+
+```{r fig.cap='Owenrships of Credit Cards with last for number 2540 and 9683', out.width="100%"}
+include_graphics("images/boxplot.png")
+```
+
+## abnormal locations
+
+### Robert and sons
+
+If we go through the tracking events for each car, it can be easily found that a couple of employees drove to Roberts and Sons on 13 January around 13pm. For Example, the path line of the car with id 3,4,11,13,15,19,20 and 22 are observed around Roberts and Sons. However, there are no transactions produced at that moment even on that day. As we learn more information for the employees who visited the location at that moment from the table of ownership of cars and cards, we realize that one of them is SVP/CFO of GAStech and rest of them are either engineers or security staff. 
+
+Hence, we infer that this was a team building activity and they had lunch together. Also, the SVP/CFO paid the bill with business payment channel instead of using the personal credit card, which explains the reason why there is no transaction records on their personal credit cards.
+
+```{r fig.cap='Tracking of cars went to Roberts and Sons on 13 January around 13pm', out.width="100%"}
+include_graphics("images/boxplot.png")
+```
+
+```{r fig.cap='Transactions for Roberts and Sons', out.width="100%"}
+include_graphics("images/boxplot.png")
+```
+
+### Kronos Mart
+
+There are several transactions (5 actually) that happened at 3 am in Kronos Mart, which is quite abnormal cause the mart generally doesn’t open at that time. They are from different credit cards, 1 of them happened on Monday, 4 of them happened on Sunday. Those happened on Sunday, 3 of them happened on Jan 19.
+
+However, the transaction amount of the five records did not show any difference and all ten transactions that happened in Kronos Mart are made from different 10 cards.
 
 # Future Work
 
+## further explore the geospatial data
 
+for Daily Dealz, there is only one transaction that happened at 6 am on Monday, Jan 13. And if we check the last 4 cc numbers, we can see that the owner of this card had a transaction that happened at 3 am in Kronos Mart on Sunday, Jan 19. Also, the amount is specially small (2.01).
 
+We cannot find the place in the given picture and then cannot do further analysis. In the future maybe we can explore the previous work and try different ways to process the file and get those locations or find the locations directly.
 
+## owner inferrence
+
+when identify the owners of each credit card and loyalty card, we find that there exist a credit card that can match with two loyalty cards and a loyalty card that can match with two credit cards. For the multiple matching case, some potential unofficial relationships would be identified if further exploration could be done. Besides, the inference of owners of each credit card and loyalty card could be more detailed and accurate if the tracking of trucks could be taken into consideration.
 
 # References
 
