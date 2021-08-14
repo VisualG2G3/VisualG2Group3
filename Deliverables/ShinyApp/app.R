@@ -116,7 +116,7 @@ owner_match_ori <- read_csv("data/car-card-match.csv") %>%
     dplyr::rename("Credit card num" = "CC", "Loyalty card num" = "Loyalty")
 
 owner_match_ori$`Credit card num` = as.character(owner_match_ori$`Credit card num`)
-owner_match_ori$CarID = as.character(owner_match_ori$CarID)
+owner_match_ori$CarID = as.factor(owner_match_ori$CarID)
 
 owner_match <- left_join(car_ass, owner_match_ori, by = "CarID", 
                          na_matches = "never") %>%
