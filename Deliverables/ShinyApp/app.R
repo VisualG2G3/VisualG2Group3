@@ -25,12 +25,12 @@ library(tidyverse)
 # #gps <- read_csv("Deliverables/ShinyApp/data/gps.csv")
 # #saveRDS(gps, file = "Deliverables/ShinyApp/data/gps_rds")
 # cc <- read_csv("Deliverables/ShinyApp/data/cc_data.csv",
-#               locale = locale(encoding = "windows-1252"))
+#            locale = locale(encoding = "windows-1252"))
 # loyalty <- read_csv("Deliverables/ShinyApp/data/loyalty_data.csv",
 #                    locale = locale(encoding = "windows-1252"))
 # gps <- readRDS("Deliverables/ShinyApp/data/gps_rds")
 # map_hourcolor <- read_csv("Deliverables/ShinyApp/data/map_hourcolor.csv")
-# cb_cc_loy <- read_csv("Deliverables/ShinyApp/data/combine_cc_loyalty.csv")
+# cb_cc_loy <- read_csv("Deliverables/ShinyApp/data/combine_cc_loyalty.csv", locale = locale(encoding = "windows-1252"))
 
 ## For Shiny
 car_ass <- read_csv("data/car-assignments.csv")
@@ -40,7 +40,8 @@ cc <- read_csv("data/cc_data.csv",
 loyalty <- read_csv("data/loyalty_data.csv",
                     locale = locale(encoding = "windows-1252"))
 map_hourcolor <- read_csv("data/map_hourcolor.csv")
-cb_cc_loy <- read_csv("data/combine_cc_loyalty.csv")
+cb_cc_loy <- read_csv("data/combine_cc_loyalty.csv",
+                      locale = locale(encoding = "windows-1252"))
 
 
 # --------Edit columns
@@ -48,6 +49,8 @@ cb_cc_loy <- read_csv("data/combine_cc_loyalty.csv")
 gps$Timestamp = mdy_hms(gps$Timestamp)
 cc$timestamp = mdy_hm(cc$timestamp)
 loyalty$timestamp = mdy(loyalty$timestamp)
+cb_cc_loy$timestamp = dmy_hm(cb_cc_loy$timestamp)
+cb_cc_loy$date = dmy(cb_cc_loy$date)
 
 ## Revise data type
 car_ass$CarID = as.character(car_ass$CarID)
@@ -135,20 +138,22 @@ names(matchres)[12] <- "price_loy"
 
 # --------Join transaction data of credit card and loyalty card
 cb_cc_loy$last4ccnum = as.character(cb_cc_loy$last4ccnum)
+cb_cc_loy <- cb_cc_loy %>%
+    select(-"X1")
 
 cbccloy <- left_join(cb_cc_loy, owner_match_ori, 
                      by= c("last4ccnum" = "Credit card num",
                            "loyaltynum" = "Loyalty card num"), 
                      na_matches = "never") %>%
-    rename("Datatime (credit)" = "timestamp", "Location" = "location",
+    rename("Datatime (credit card)" = "timestamp", "Location" = "location",
            "Price" = "price", "Credit card num" = "last4ccnum",
-           "Loyalty card num" = "loyaltynum", "Date (loyalty)" = "date")
+           "Loyalty card num" = "loyaltynum", "Date (loyalty card)" = "date")
 
-cbccloy$`Date (loyalty)` = dmy(cbccloy$`Date (loyalty)`)
-cbccloy$`Weekday (loyalty)` = wday(cbccloy$`Date (loyalty)`, label = T, abbr = T)
-cbccloy$`Weekday (credit)` = wday(cbccloy$`Datatime (credit)`, label = T, abbr = T)
+#cbccloy$`Date (loyalty)` = dmy(cbccloy$`Date (loyalty)`)
+cbccloy$`Weekday` = wday(cbccloy$`Date (loyalty card)`, label = T, abbr = T)
+#cbccloy$`Weekday (credit)` = wday(cbccloy$`Datatime (credit)`, label = T, abbr = T)
 
-cbccloy <- cbccloy[c(2,3,4,1,9,6,5,8,7)]
+cbccloy <- cbccloy[c(2,3,4,6,1,5,8,7)]
 
 
 # --------All global parameters
@@ -711,11 +716,11 @@ server <- function(input, output, session) {
         thematic::thematic_shiny()
         
         s <- input$matcht3_rows_selected
-        #if(is.null(s)) return(NULL)
+        if(is.null(s)) return(NULL)
         
         s_carid <- filter(owner_match, row_number() %in% s)$CarID
         
-        if(length(s_carid) == 0) {s_carid <- owner_match$CarID}
+        # if(length(s_carid) == 0) {s_carid <- owner_match$CarID}
         
         gps_sf_temp <- gps_sf %>% 
             filter(id %in% s_carid)
@@ -738,11 +743,11 @@ server <- function(input, output, session) {
         thematic::thematic_shiny()
         
         s <- input$matcht3_rows_selected
-        #if(is.null(s)) return(NULL)
+        if(is.null(s)) return(NULL)
         
         s_carid <- filter(owner_match, row_number() %in% s)$CarID
         
-        if(length(s_carid) == 0) {s_carid <- owner_match$CarID}
+        # if(length(s_carid) == 0) {s_carid <- owner_match$CarID}
         
         match_selected <- matchres %>% 
             filter(CarID %in% s_carid)
