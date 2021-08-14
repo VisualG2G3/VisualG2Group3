@@ -141,7 +141,7 @@ names(matchres)[12] <- "price_loy"
 # --------Join transaction data of credit card and loyalty card
 cb_cc_loy$last4ccnum = as.character(cb_cc_loy$last4ccnum)
 cb_cc_loy <- cb_cc_loy %>%
-    select(-c("X1","date"))
+    select(-c(1,6))
 
 cbccloy <- left_join(cb_cc_loy, owner_match_ori, 
                      by= c("last4ccnum" = "Credit card num",
@@ -197,17 +197,72 @@ ui <- fluidPage(#shinythemes::themeSelector(),
     # ------Navigation Bar
     navbarPage("EATTGE", 
                fluid = T, windowTitle="VAST Challenge 2021 Mini Challenge 2", 
-               selected="eda",
+               selected="instr",
                
                # ------Panel Overview
-               tabPanel("Instruction", value = "instr", fluid = T, icon = icon("book"),
+               tabPanel("Instruction", value = "instr", fluid = T, icon = icon("book-open"),
                         titlePanel(tags$b("An Application for Exploring Abnormal Trajectories and Transactions of GAStech Employees")),
+                        tags$hr(),
                         fluidRow(column(width = 6,
-                                        h4("About"),
-                                        p("This Shiny App is desin")),
-                                 column(width = 6)
-                            
-                        )
+                                        # hr(),
+                                        h4(tags$b("About")),
+                                        p("The IEEE Visual Analytics Science and Technology (VAST) 
+                                          Challenge is an annual contest of which the goal is to 
+                                          advance the field of visual analytics through the competition. 
+                                          2021 Mini Vast Challenge 2 presented the scenario: some 
+                                          Kronos-based employees of GAStech oil and gas company 
+                                          went missing. Car tracking data for the two weeks leading 
+                                          up to the disappearance, as well as credit card transactions 
+                                          and loyalty card usage data related to missing employees are provided."),
+                                        p("For more information on 2021 Mini Vast Challenge 2, please visit",
+                                            tags$a(href= "https://vast-challenge.github.io/2021/MC2.html","the official website"),
+                                          "."),
+                                        p("This Shiny App is designed as a visualization tool for
+                                          GAStech employees's GPS track and transaction data, so that 
+                                          the users not only could get an overview of data distribution, 
+                                          but also do exploration and analysis to derive deeper insights on data.")),
+                                 column(width = 6,
+                                        # hr(),
+                                        h4(" "),
+                                        br(),
+                                        br(),
+                                        tags$img(src="vastlogo.jpg", width = 300))
+                                 ),
+                        fluidRow(column(width = 6,
+                                        verticalLayout(
+                                            h4(tags$b("Application feature")),
+                                            p("As shown in the figure on the right, the application consists 4 panels:"),
+                                            p("The Exploratory Data Analysis panel enables users to perform analysis on 
+                                            transaction data of credit and loyalty card, observe the popular spots and 
+                                            detect abnormal activities."),
+                                            p("The GPS panel provide the trajactory maps and heatmap to visualize the GPS track data of selected cars and date."),
+                                            p("The Owner Matching panel shows the correspondence between owners of cars 
+                                            and credit/loyalty cards, as well as charts for exploration."),
+                                            p("The Data panel provides a data table for details of individual transaction record, 
+                                            in which the credit card and loyalty card records are join by matching card number, location, price and date.")
+                                        ),
+                                        verticalLayout(
+                                            h4(tags$b("User Guide")),
+                                            p("To optimise your user experience, please refer to our",
+                                              tags$a(href="https://isss608vaag2group3.netlify.app/posts/2021-08-04-user-guide/",
+                                                     tags$i("User Guide")),
+                                              ".")
+                                        )
+                                        ),
+                                 column(width = 6,
+                                        h4(" "),
+                                        tags$img(src="overview.png", width = 600)
+                                        )
+                                 )
+                        # ,
+                        # fluidRow(column(width = 6,
+                        #                 h4(tags$b("User Guide")),
+                        #                 p("To optimise your user experience, please refer to our",
+                        #                   tags$a(href="https://isss608vaag2group3.netlify.app/posts/2021-08-04-user-guide/",
+                        #                          tags$i("User Guide")),
+                        #                   ".")
+                        #                 )
+                        #          )
                     
                ),
                
@@ -281,7 +336,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                       
                                       mainPanel(width = 9, fluid = T,
                                                 # ----Heatmap plotting in tab1
-                                                h4("Heatmap of Transactinon Frequency"),
+                                                h4("Heatmap of Transaction Frequency"),
                                                 
                                                 fluidRow(
                                                     column(width = 6,
@@ -342,7 +397,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                                      # ----GPS movement path plot on map
                                                                      
                                                                      fluidRow(column(width = 6,
-                                                                                     h4("GPS tracking of selcted Car ID in specific dates"),
+                                                                                     h4("The GPS track of selected Car ID in specific date(s)"),
                                                                                      h6(tags$i("Distinguish colors by date")),
                                                                                      tmapOutput("gps1",
                                                                                                 width = "100%",
@@ -350,7 +405,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                                                      )
                                                                      ),
                                                                      column(width = 6,
-                                                                            h4("GPS tracking of selcted Car ID in specific dates"),
+                                                                            h4("The GPS track of selected Car ID in specific date(s)"),
                                                                             h6(tags$i("Distinguish colors by timeslot")),
                                                                             tmapOutput("gps2",
                                                                                        width = "100%",
@@ -365,7 +420,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                             # ----GPS data heatmap plot
                                                             
                                                             tabPanel(title = "GPS Data Overview", 
-                                                                     h4("Hourly heatmap of different car tracking data"),
+                                                                     h4("Hourly heatmap of different car tracking data, ID by hour"),
                                                                      fluidRow(column(width = 12,
                                                                                      plotlyOutput("heatt2",
                                                                                                   width = "800px",
@@ -385,11 +440,11 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                         titlePanel(tags$b("Correspondence between car owner and credit card/loyalty card holder")),
                         
                         fluidRow(column(width = 6,
+                                        p(tags$i("*Tip: click the row in the data table to see specific heatmap and line chart for selected employee")),
                                         DT::dataTableOutput("matcht3" #, height = "650px"
                                         )                # left side
                         ),
                         column(width = 6,
-                               p(tags$i("*Tip: click the row in the data table to see specific heatmap and line chart for selected employee")),
                                plotlyOutput("heatt3", height = "350px"),              # right side
                                hr(),
                                radioGroupButtons("cardtypet3",
@@ -398,7 +453,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                              "Loyalty Card"),
                                                  selected = "Credit Card",
                                                  status = "outline-dark"),
-                               plotlyOutput("linet3", height = "270px" )
+                               plotlyOutput("linet3", height = "300px" )
                         )
                         )
                ),
@@ -718,7 +773,7 @@ server <- function(input, output, session) {
                       class = "hover", rownames = F,
                       extensions= "Scroller",
                       options = list(dom = "t", scrollX = TRUE,
-                          scroller=TRUE, scrollY=600, deferRender=TRUE,
+                          scroller=TRUE, scrollY=570, deferRender=TRUE,
                           search = list(regex = TRUE)
                       )
         )
@@ -744,7 +799,7 @@ server <- function(input, output, session) {
                     "Record Count: %{z}",
                     "<extra></extra>")) %>%
             add_histogram2d(colors = "Blues") %>%
-            layout(title = "Heatmap of GPS tracking data of the selected car, hour by date",
+            layout(title = "Heatmap of GPS tracking data of the selected car(s), hour by date",
                    xaxis = list(title = "Date", tickmode = "linear"),
                    yaxis = list(title="Hour", tickmode = "linear")
             )
@@ -767,7 +822,7 @@ server <- function(input, output, session) {
         if (input$cardtypet3 == "Credit Card"){
             linec <- plot_ly(data = match_selected, x = ~timestamp_cc, y = ~price_cc, color = ~location_cc,
                              colors = "Accent", type = 'scatter', mode = 'lines+markers') %>%
-                layout(title = "Credit card transactions of the selected employee",
+                layout(title = "Credit card transactions of selected employee(s), price by date",
                        xaxis = list(title = "Timestamp"),
                        yaxis = list(title = "Price"))
             
@@ -779,7 +834,7 @@ server <- function(input, output, session) {
         } else {
             linec <- plot_ly(data = match_selected, x = ~timestamp_loy, y = ~price_loy, color = ~location_loy,
                              colors = "Accent", type = 'scatter', mode = 'lines+markers') %>%
-                layout(title = "Loyalty card transactions of the selected employees",
+                layout(title = "Loyalty card transactions of selected employee(s), price by date",
                        xaxis = list(title = "Timestamp"),
                        yaxis = list(title = "Price"))
             
@@ -804,7 +859,8 @@ server <- function(input, output, session) {
                       #extensions= "Scroller",
                       options = list(dom = "rtip", scrollX = TRUE,
                                      autoWidth = TRUE, pageLength = 12,
-                                     columnDefs = list(list(className = "dt-right", targets = "_all"))
+                                     columnDefs = list(list(className = "dt-right", targets = "_all")),
+                                     search = list(regex = TRUE)
                                      #scroller=TRUE, scrollY=570, deferRender=TRUE
                                      )
         )
