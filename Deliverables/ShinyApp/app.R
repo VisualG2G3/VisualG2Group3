@@ -103,6 +103,8 @@ np = npts(gps_path, by_feature = T)
 gps_path2 <- cbind(gps_path, np) %>%
     dplyr::filter(np > 1) # exclude orphan coordinate records
 
+## Car ID
+car_id <- as.character(sort(unique(c(as.integer(gps$id)))))
 
 # --------Join owner matching result between car assignment and cards number
 # owner_match_ori <- read_csv("Deliverables/ShinyApp/data/car-card-match.csv") %>%
@@ -173,8 +175,6 @@ day1 <- unique(c(cards$day))
 ## hour
 hour1 <- unique(c(cc$hour))
 
-## Car ID
-car_id <- as.character(sort(unique(c(as.integer(gps$id)))))
 
 
 # --------Self define function
