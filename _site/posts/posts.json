@@ -62,10 +62,10 @@
     ],
     "date": "2021-08-04",
     "categories": [],
-    "contents": "\r\nIdentify the owners of cars and cards\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\n1. Landing Page\r\n2. EDA\r\n3. GPS\r\n4. Owner Matching\r\n5. Data\r\n\r\nGuidance on how to use the Shiny App for exploring abnormal trajectories and transactions of GAStech employees\r\n1. Landing Page\r\nThe landing page of the application provides a brief background, features and skeleton overview for this application.\r\n\r\nFig.1 Landing page of Shiny App\r\n\r\n2. EDA\r\nUse this tab to do exploratory data analysis on credit card and loyalty card transaction data.\r\n\r\nFig.2 The panel for EDA\r\n\r\n[1] Switch the heatmap to show credit card or loyalty card in chart A.  [2] Select one or multiple credit/loyalty card number to transactions of specific cards for chart A, B and C.  [3] Select all weekday/weekend or particular dates to filter transactions in specific days for chart A, B, C\r\n\r\nFig.3 Hover over on charts to see the tooltip\r\n\r\n[4] Hover cursor over plot area to see the location, date/hour and transaction count for heatmap, see the maximum, minimum, mean, median and quartile transaction price for boxplot.\r\n\r\nFig.4 Zoom in and out on boxplot\r\n\r\n[5] Drag and drop on plot area to zoom in on the boxplot and see details clearly of boxes. Double-click on plot area to restore the default scale of the plotting.\r\n3. GPS\r\n4. Owner Matching\r\n5. Data\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-08-04T18:01:24+08:00",
-    "input_file": {}
+    "last_modified": "2021-08-15T05:45:37+08:00",
+    "input_file": "user-guide.knit.md"
   },
   {
     "path": "posts/2021-06-13-proposal/",
