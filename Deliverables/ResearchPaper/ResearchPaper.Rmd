@@ -111,9 +111,11 @@ include_graphics("images/df_t2.2hm.jpg")
 
 ## Owner matching analysis
 
-The third tab panel is very important as it shows the correspondence between owners of cars and credit/loyalty cards. The panel mainly includes three parts, one table on the left and two charts on the right. The table summarized the corresponding relationships of GAStech staff, individual cars and credit/loyalty cards. On the right side, the boxplot is displaying the GPS tracking frequency of cars by hour and date. Users can see the exact record counts by hover cursor over the box. The line chart shows the transaction record in each day and every location. Users can switch between credit card and loyalty card by click the button above.
+The third tab panel is very important as it shows the correspondence between owners of cars and credit/loyalty cards. The panel mainly includes three parts, one table on the left and two charts on the right. 
 
-Further more, users can make use of the interactivity between the data table and two charts to drill down and visualize the data for each specific staff. By clicking on the data table row, the two charts would automatically show the data of the selected car owner/card holder. This make it easy to do comparison of GPS track data and transaction data within or between employees of GAStech.  
+The table summarized the corresponding relationships of GAStech staff, individual cars and credit/loyalty cards. 
+
+Further more, users can make use of the interactivity between the data table and two charts to drill down and visualize the data for each specific staff. By clicking on the data table row, two charts would automatically show up on the right side. Therein the boxplot is displaying the GPS tracking frequency of selected car(s) by hour and date. Users can see the exact record counts by hover cursor over the box. The line chart shows the transaction record of selected card holder(s) in each day and every location. Users can switch between credit card and loyalty card by click the button above. This make it easy to do comparison of GPS track data and transaction data within or between employees of GAStech.  
 
 ```{r fig.cap='Correspondence between car owner and credit card/loyalty card holder', out.width="100%"}
 include_graphics("images/df_t3.1om.jpg")
