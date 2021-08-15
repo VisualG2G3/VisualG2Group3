@@ -243,7 +243,7 @@ include_graphics("images/Hotel_0.png")
 include_graphics("images/Hotel_1.png")
 ```
 
-## activities
+## Activities
 
 ### Robert and sons
 
@@ -259,7 +259,7 @@ include_graphics("images/Roberts_0.png")
 include_graphics("images/Roberts_1.png")
 ```
 
-### evening grouping on Jan 10
+### Evening grouping on Jan 10
 
 ```{r fig.cap='Evening grouping on Jan 10', out.width="100%"}
 include_graphics("images/jan10grouping.png")
@@ -295,7 +295,7 @@ Katherina’s Café is so close to GAStech that it is popular among GAStech staf
 include_graphics("images/weekends_grouping.png")
 ```
 
-## another abnormal place: Kronos Mart
+## Another abnormal place: Kronos Mart
 
 From the heatmap, we can see that there are several transactions (5 actually) that happened at 3 am in Kronos Mart, which is quite abnormal cause the mart generally doesn’t open at that time. They are from different credit cards, 1 of them happened on Monday, 4 of them happened on Sunday. Those happened on Sunday, 3 of them happened on Jan 19.
 
@@ -313,7 +313,7 @@ include_graphics("images/kronosmarttable.png")
 
 # Future Work
 
-## further explore the geospatial data
+## Further explore the geospatial data
 
 For Daily Dealz, there is only one transaction that happened at 6 am on Monday, Jan 13. And if we check the last 4 cc numbers, we can see that the owner of this card had a transaction that happened at 3 am in Kronos Mart on Sunday, Jan 19. Also, the amount is specially small (2.01).
 
@@ -327,7 +327,7 @@ include_graphics("images/dailydealztable.png")
 
 We cannot find the place in the given picture and then cannot do further analysis. In the future maybe we can explore the previous work and try different ways to process the file and get those locations or find the locations directly.
 
-## owner inferrence
+## Owner inferrence
 
 when identify the owners of each credit card and loyalty card, we find that there exist a credit card that can match with two loyalty cards and a loyalty card that can match with two credit cards. For the multiple matching case, some potential unofficial relationships would be identified if further exploration could be done. Besides, the inference of owners of each credit card and loyalty card could be more detailed and accurate if the tracking of trucks could be taken into consideration.
 
