@@ -107,6 +107,9 @@ gps_path2 <- cbind(gps_path, np) %>%
 
 ## Car ID
 car_id <- as.character(sort(unique(c(as.integer(gps$id)))))
+# car_id <- c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+#             "16","17","18","19","20","21","22","23","24","25","26","27","28",
+#             "29","30","31","32","33","34","35")
 
 # --------Join owner matching result between car assignment and cards number
 # owner_match_ori <- read_csv("Deliverables/ShinyApp/data/car-card-match.csv") %>%
@@ -373,6 +376,8 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                    conditionalPanel('input.GPSset === "GPS Movement Path"',
                                                                     pickerInput("cidt2", "Select a CarID",
                                                                                 choices = car_id,
+                                                                                # choices = c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+                                                                                #             "16","17","18"),
                                                                                 selected = "1",
                                                                                 options = list(`live-search` = TRUE,
                                                                                                size = 10)),
