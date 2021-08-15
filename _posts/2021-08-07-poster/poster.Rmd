@@ -18,6 +18,6 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-The project poster is designed and created using the Poster template of `posterdown` package. The link to the poster can be found [here](https://scis.smu.edu.sg/).
+The project poster is designed and created using the Poster template of `posterdown` package. The link to the poster can be found [here](file:///C:/Users/BTimes1/Desktop/Visual%20Analytics/Project/VisualG2Group3/Deliverables/Poster/Poster.html).
 
 

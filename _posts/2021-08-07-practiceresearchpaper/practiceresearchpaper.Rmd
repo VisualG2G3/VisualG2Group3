@@ -18,5 +18,5 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-The practice research paper is edited using the ACM article template of `rticle` package. The link to the paper can be found [here](https://scis.smu.edu.sg/).
+The practice research paper is edited using the ACM article template of `rticle` package. The link to the paper can be found [here](https://github.com/VisualG2G3/VisualG2Group3/blob/master/Deliverables/ResearchPaper/ResearchPaper.pdf).
 
