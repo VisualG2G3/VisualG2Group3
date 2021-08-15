@@ -39,7 +39,7 @@ This panel is designed to do exploratory data analysis on credit card and loyalt
 
 <p style="text-align:center;"> ![](img/t1.2-1.jpg){width=45%} ![](img/t1.2-2.jpg){width=45%} ![](img/t1.2-3.jpg){width=100%}  <br> _Fig.3 Hover over on charts to see the tooltip_ </p>
 
-[4] Hover cursor over plot area to see the location, date/hour and transaction count for chart A/chart B, see the maximum, minimum, mean, median and quartile transaction price for chart C.
+[4] Hover cursor over plot area to see the tooltip with location, date/hour and transaction count for chart A/chart B, see the tooltip with maximum, minimum, mean, median and quartile transaction price for chart C.
 
 <p style="text-align:center;"> ![](img/t1.3_zoom.jpg){width=50%} <br> _Fig.4 Zoom in and out on boxplot_ </p>
 
@@ -49,8 +49,9 @@ This panel is designed to do exploratory data analysis on credit card and loyalt
 
 This panel is designed to visualize the GPS tracking data. Two sub-tabs constitute this panel.
 
+**In the first sub-tab:**
+
 ![](img/t2.1-1.jpg){width=100%} <br> <p style="text-align:center;"> _Fig.5 The first sub-tab of the panel for GPS_ </p>
-In the first sub-tab: <br>
 [6] Select particular car ID and date(s) to show GPS movement path for selected car in selected date(s) in chart D and E. <br>
 [7] The table shows which timeslot each color represents in chart E, and the layer names of the respective timeslots. <br>
 [8] This buttons are used to zoom in our zoom out the map for displaying more details.
@@ -67,36 +68,43 @@ In the first sub-tab: <br>
 
 _\*Tips: In order to better analysis the movement path, highly recommend to select one car ID to overview all movement lines, then further select one date to observe actions in different timeslots of a day._
 
+**In the second tab:**
 
 ![](img/df_t2.2hm.jpg){width=100%} <br> <p style="text-align:center;"> _Fig.8 The second sub-tab of the panel for GPS_ </p>
-In the second tab: <br>
 [12] Check or uncheck weekday or weekend to filter GPS track data in weekday or weekend only for chart F.
 
 <p style="text-align:center;"> ![](img/t2-2.jpg){width=50%} <br> _Fig.9 Tooltip in chart F_ </p>
 
-[13] Hover cursor over plot area of chart F to see the car ID, hour and record count of each car in one hour.
+[13] Hover cursor over plot area of chart F to see the tooltip with car ID, hour and record count of each car in one hour.
+
+_\*Note: As the Memory limitation of free Shiny App server, after deploying, the Shiny APP can't afford displaying GPS movement lines for all cars. Thus we filtered GPS tracking data and retained several typical car IDs data to generate the key movement lines for further exploration and analysis._
 
 # 4. Owner Matching
 
 This panel is used to show the relationship between particular car owner and credit/loyalty card holder.
 
+![](img/df_t3.1om.jpg){width=100%} <br> <p style="text-align:center;"> _Fig.10 The panel for Owner Matching_ </p>
+[14] Click on the arrow icons next to column title to sort the table A by corresponding column; click the input boxes below the column title, type in searching criteria or select target option to filter the data table. Regular expression can be applied in searching criteria. <br>
+[15] Click the row in table A to see specific heatmap (chart G) and line chart (chart H) for selected employee(s) on the right side. <br>
+[16] Switch the heatmap to show credit card or loyalty card in chart H.
+
+_\*Note: As stated in section 3, only GPS tracking data of the retained car IDs can be used to build Chart G._
+
+
+<p style="text-align:center;"> ![](img/t3.2-1.jpg){width=80%} ![](img/t3.2-2.jpg){width=80%} <br> _Fig.11 Hover over on charts to see the tooltip _ </p>
+
+[17] Hover cursor over plot area of chart G to see the tooltip with hour, date and record count of selected car in one hour of a day; hover over point on chart H to see the tooltip with the transaction datatime and price in specific location.
+
+<p style="text-align:center;"> ![](img/t3.3.jpg){width=80%} <br> _Fig.12 Hover over on charts to see the tooltip _ </p>
+
+[18] Drag and drop on plot area to zoom in on chart H and see details clearly of points. Double-click on plot area to restore the default scale of the plotting.
+
 # 5. Data
 
+This panel is used to retieve the details of individual transaction record. 
 
+![](img/df_t4.1dt.jpg){width=100%} <br> <p style="text-align:center;"> _Fig.13 The panel for Owner Matching_ </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[19] Click on the arrow icons next to column title to sort the table B by corresponding column. <br>
+[20] Click the input boxes below the column title, type in searching criteria or select target option to filter table B. Regular expression can be applied in searching criteria. <br>
+[21] Click the "Previous" button to shift to the previous page of table B; click "Next" button to shift to the next page; click the page number to jump into the selected  page.

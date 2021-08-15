@@ -414,9 +414,10 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                                                                 width = "100%",
                                                                                                 height = "650px"),
                                                                                      hr(),
-                                                                                     p(tags$i("Note: As the Memory limitation of free Shiny App server, 
-                                                                                              after deploying, the Shiny APP can't afford displaying GPS movement lines for all cars. 
-                                                                                              Thus we select several typical car ID as key movement path for further exploration and analysis"))
+                                                                                     p(tags$i("Note: As the Memory limitation of free Shiny App server, after deploying, 
+                                                                                              the Shiny APP can't afford displaying GPS movement lines for all cars. 
+                                                                                              Thus we filtered GPS tracking data and retained several typical car IDs data 
+                                                                                              to generate the key movement lines for further exploration and analysis."))
                                                                                      ),
                                                                      column(width = 6,
                                                                             h4("The GPS track of selected Car ID in specific date(s)"),
@@ -439,7 +440,12 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                                                      plotlyOutput("heatt2",
                                                                                                   width = "800px",
                                                                                                   height = "600px"
-                                                                                     )
+                                                                                     ),
+                                                                                     hr(),
+                                                                                     p(tags$i("Note: As the Memory limitation of free Shiny App server, after deploying, 
+                                                                                              the Shiny APP can't afford displaying GPS movement lines for all cars. 
+                                                                                              Thus we filtered GPS tracking data and retained several typical car IDs data 
+                                                                                              to generate the key movement lines for further exploration and analysis."))
                                                                      )
                                                                      )
                                                                      

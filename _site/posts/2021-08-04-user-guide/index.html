@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["img/df_t0instr.jpg","img/df_t1.1eda.jpg","img/df_t2.2hm.jpg","img/df_t3.1om.jpg","img/df_t4.1dt.jpg","img/t1.2-1.jpg","img/t1.2-2.jpg","img/t1.2-3.jpg","img/t1.3_zoom.jpg","img/t2-2.jpg","img/t2.1-1.jpg","img/t2.1-2.jpg","img/t2.1-3.jpg","user-guide_files/anchor-4.2.2/anchor.min.js","user-guide_files/bowser-1.9.3/bowser.min.js","user-guide_files/distill-2.2.21/template.v2.js","user-guide_files/header-attrs-2.9/header-attrs.js","user-guide_files/jquery-1.11.3/jquery.min.js","user-guide_files/popper-2.6.0/popper.min.js","user-guide_files/tippy-6.2.7/tippy-bundle.umd.min.js","user-guide_files/tippy-6.2.7/tippy-light-border.css","user-guide_files/tippy-6.2.7/tippy.css","user-guide_files/tippy-6.2.7/tippy.umd.min.js","user-guide_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["img/df_t0instr.jpg","img/df_t1.1eda.jpg","img/df_t2.2hm.jpg","img/df_t3.1om.jpg","img/df_t4.1dt.jpg","img/t1.2-1.jpg","img/t1.2-2.jpg","img/t1.2-3.jpg","img/t1.3_zoom.jpg","img/t2-2.jpg","img/t2.1-1.jpg","img/t2.1-2.jpg","img/t2.1-3.jpg","img/t3.2-1.jpg","img/t3.2-2.jpg","img/t3.3.jpg","user-guide_files/anchor-4.2.2/anchor.min.js","user-guide_files/bowser-1.9.3/bowser.min.js","user-guide_files/distill-2.2.21/template.v2.js","user-guide_files/header-attrs-2.9/header-attrs.js","user-guide_files/jquery-1.11.3/jquery.min.js","user-guide_files/popper-2.6.0/popper.min.js","user-guide_files/tippy-6.2.7/tippy-bundle.umd.min.js","user-guide_files/tippy-6.2.7/tippy-light-border.css","user-guide_files/tippy-6.2.7/tippy.css","user-guide_files/tippy-6.2.7/tippy.umd.min.js","user-guide_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2126,22 +2126,23 @@ document.addEventListener('DOMContentLoaded', function() {
 <p style="text-align:center;">
 <em>Fig.2 The panel for EDA</em>
 </p>
-<p>[1] Switch the heatmap to show credit card or loyalty card in chart A. <br> [2] Select one or multiple credit/loyalty card number to transactions of specific cards for chart A, B and C. <br> [3] Select all weekday/weekend or particular dates to filter transactions in specific days for chart A, B, C</p>
+<p>[1] Switch the heatmap to show credit card or loyalty card in chart A. <br> [2] Select one or multiple credit/loyalty card number to transactions of specific cards for chart A, B and C. <br> [3] Select all weekday/weekend or particular dates to filter transactions in specific days for chart A, B, C.</p>
 <p style="text-align:center;">
 <img src="img/t1.2-1.jpg" style="width:45.0%" /> <img src="img/t1.2-2.jpg" style="width:45.0%" /> <img src="img/t1.2-3.jpg" style="width:100.0%" /> <br> <em>Fig.3 Hover over on charts to see the tooltip</em>
 </p>
-<p>[4] Hover cursor over plot area to see the location, date/hour and transaction count for heatmap, see the maximum, minimum, mean, median and quartile transaction price for boxplot.</p>
+<p>[4] Hover cursor over plot area to see the tooltip with location, date/hour and transaction count for chart A/chart B, see the tooltip with maximum, minimum, mean, median and quartile transaction price for chart C.</p>
 <p style="text-align:center;">
 <img src="img/t1.3_zoom.jpg" style="width:50.0%" /> <br> <em>Fig.4 Zoom in and out on boxplot</em>
 </p>
-<p>[5] Drag and drop on plot area to zoom in on the boxplot and see details clearly of boxes. Double-click on plot area to restore the default scale of the plotting.</p>
+<p>[5] Drag and drop on plot area to zoom in on chart C and see details clearly of boxes. Double-click on plot area to restore the default scale of the plotting.</p>
 <h1 id="gps">3. GPS</h1>
 <p>This panel is designed to visualize the GPS tracking data. Two sub-tabs constitute this panel.</p>
+<p><strong>In the first sub-tab:</strong></p>
 <img src="img/t2.1-1.jpg" style="width:100.0%" /> <br>
 <p style="text-align:center;">
 <em>Fig.5 The first sub-tab of the panel for GPS</em>
 </p>
-<p>In the first sub-tab: [6] Select particular car ID and date(s) to show GPS movement path for selected car in selected date(s) in chart D and E. <br> [7] The table shows which timeslot each color represents in chart E, and the layer names of the respective timeslots. <br> [8] This buttons are used to zoom in our zoom out the map for displaying more details.</p>
+<p>[6] Select particular car ID and date(s) to show GPS movement path for selected car in selected date(s) in chart D and E. <br> [7] The table shows which timeslot each color represents in chart E, and the layer names of the respective timeslots. <br> [8] This buttons are used to zoom in our zoom out the map for displaying more details.</p>
 <p style="text-align:center;">
 <img src="img/t2.1-2.jpg" style="width:60.0%" /> <br> <em>Fig.6 Legend and tooltip of chart D</em>
 </p>
@@ -2151,13 +2152,40 @@ document.addEventListener('DOMContentLoaded', function() {
 </p>
 <p>[11] Hover the cursor over the layer logo on the upper-left corner to see the layers of Chart E. Check or uncheck particular layers by clicking to see the movement of specific timeslots in selected day.</p>
 <p><em>*Tips: In order to better analysis the movement path, highly recommend to select one car ID to overview all movement lines, then further select one date to observe actions in different timeslots of a day.</em></p>
+<p><strong>In the second tab:</strong></p>
 <img src="img/df_t2.2hm.jpg" style="width:100.0%" /> <br>
 <p style="text-align:center;">
 <em>Fig.8 The second sub-tab of the panel for GPS</em>
 </p>
-<p>In the second tab: [12]</p>
+<p>[12] Check or uncheck weekday or weekend to filter GPS track data in weekday or weekend only for chart F.</p>
+<p style="text-align:center;">
+<img src="img/t2-2.jpg" style="width:50.0%" /> <br> <em>Fig.9 Tooltip in chart F</em>
+</p>
+<p>[13] Hover cursor over plot area of chart F to see the tooltip with car ID, hour and record count of each car in one hour.</p>
+<p><em>*Note: As the Memory limitation of free Shiny App server, after deploying, the Shiny APP can’t afford displaying GPS movement lines for all cars. Thus we filtered GPS tracking data and retained several typical car IDs data to generate the key movement lines for further exploration and analysis.</em></p>
 <h1 id="owner-matching">4. Owner Matching</h1>
+<p>This panel is used to show the relationship between particular car owner and credit/loyalty card holder.</p>
+<img src="img/df_t3.1om.jpg" style="width:100.0%" /> <br>
+<p style="text-align:center;">
+<em>Fig.10 The panel for Owner Matching</em>
+</p>
+<p>[14] Click on the arrow icons next to column title to sort the table A by corresponding column; click the input boxes below the column title, type in searching criteria or select target option to filter the data table. Regular expression can be applied in searching criteria. <br> [15] Click the row in table A to see specific heatmap (chart G) and line chart (chart H) for selected employee(s) on the right side. <br> [16] Switch the heatmap to show credit card or loyalty card in chart H.</p>
+<p><em>*Note: As stated in section 3, only GPS tracking data of the retained car IDs can be used to build Chart G.</em></p>
+<p style="text-align:center;">
+<img src="img/t3.2-1.jpg" style="width:80.0%" /> <img src="img/t3.2-2.jpg" style="width:80.0%" /> <br> <em>Fig.11 Hover over on charts to see the tooltip </em>
+</p>
+<p>[17] Hover cursor over plot area of chart G to see the tooltip with hour, date and record count of selected car in one hour of a day; hover over point on chart H to see the tooltip with the transaction datatime and price in specific location.</p>
+<p style="text-align:center;">
+<img src="img/t3.3.jpg" style="width:80.0%" /> <br> <em>Fig.12 Hover over on charts to see the tooltip </em>
+</p>
+<p>[18] Drag and drop on plot area to zoom in on chart H and see details clearly of points. Double-click on plot area to restore the default scale of the plotting.</p>
 <h1 id="data">5. Data</h1>
+<p>This panel is used to retieve the details of individual transaction record.</p>
+<img src="img/df_t4.1dt.jpg" style="width:100.0%" /> <br>
+<p style="text-align:center;">
+<em>Fig.13 The panel for Owner Matching</em>
+</p>
+<p>[19] Click on the arrow icons next to column title to sort the table B by corresponding column. <br> [20] Click the input boxes below the column title, type in searching criteria or select target option to filter table B. Regular expression can be applied in searching criteria. <br> [21] Click the “Previous” button to shift to the previous page of table B; click “Next” button to shift to the next page; click the page number to jump into the selected page.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
