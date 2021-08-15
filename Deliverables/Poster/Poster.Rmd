@@ -54,7 +54,7 @@ The task of Mini Challenge 2 is to explore anomalies and get meaningful insights
 
 To identify the anomalies of transactions for credit cards and loyalty cards, we need to compare the detailed transaction information including the location, date and price. Also, in order to identify the owners of cars and cards, looking at the tacking data for each car is inevitable. Instead of generating tracking for each car, an interactive visualisation application which allows user to select carID and timeslots they would look at is more efficient and helpful.
 
-With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.  
+There are four key aspects in this interactive visualization application. With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.  
 
 # Approaches
 
@@ -68,7 +68,7 @@ With this application, we hope to provide an interactive experience to explore t
 
 ### EDA for transaction data of credit and loyalty cards
 
-The heatmap on the left side is showing consumption frequency grouped by location and date of Jan, while the right side one is by location and hour of the day. On the left side, users can switch the card type (credit or loyalty card). The boxplot below is designed to show transaction price of different locations. 
+The heatmap on the left side is showing consumption frequency grouped by location and date of Jan, while the right side one is by location and hour of the day. On the left side, users can switch the card type (credit or loyalty card). The boxplot below is designed to show transaction price of different locations. Users can select card numbers, switch between weekday and weekend, or even select the exact days to customize the charts and explore on details.
 
 ```{r out.width="100%"}
 knitr::include_graphics("images/df_t1.1eda.jpg")
@@ -76,7 +76,7 @@ knitr::include_graphics("images/df_t1.1eda.jpg")
 
 ### Analysis of GPS tracking data
 
-Car GPS movement path shown on the city map of Abila: The left plot represents different dates by colors, while the right one representing different time slot by different colors.
+Car GPS movement path shown on the city map of Abila: The left plot represents different dates by colors, while the right one representing different time slot by different colors. Users can explore on each car ID and date by selecting from the dropdown list on the left side. Besides, if hover the cursor over the layer logo on the right side map, users could filter shape layer for the target time slot to see the movement path of a specific time period clearly.
 
 ```{r out.width="100%"}
 knitr::include_graphics("images/df_t2.1map.jpg")

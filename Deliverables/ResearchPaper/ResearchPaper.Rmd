@@ -49,7 +49,7 @@ To identify the anomalies of transactions for credit cards and loyalty cards, we
 
 With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.  
 
-There are three key aspects in this interactive visualisation application,
+There are four key aspects in this interactive visualization application,
 
 1.	Transactions exploration 
 2.	Gps Map

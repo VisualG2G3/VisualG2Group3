@@ -306,7 +306,7 @@ font-size: 20pt;
 <h1>Motivation</h1>
 <p>The task of Mini Challenge 2 is to explore anomalies and get meaningful insights based on the given dataset to help the investigation of the incident. As the tracking data provided here are geospatial data with aspatial information, a good way to present the movement information is to show the path on the map.</p>
 <p>To identify the anomalies of transactions for credit cards and loyalty cards, we need to compare the detailed transaction information including the location, date and price. Also, in order to identify the owners of cars and cards, looking at the tacking data for each car is inevitable. Instead of generating tracking for each car, an interactive visualisation application which allows user to select carID and timeslots they would look at is more efficient and helpful.</p>
-<p>With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.</p>
+<p>There are four key aspects in this interactive visualization application. With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.</p>
 </div>
 <div id="approaches" class="section level1">
 <h1>Approaches</h1>
@@ -322,12 +322,12 @@ font-size: 20pt;
 <h1>Results</h1>
 <div id="eda-for-transaction-data-of-credit-and-loyalty-cards" class="section level3">
 <h3>EDA for transaction data of credit and loyalty cards</h3>
-<p>The heatmap on the left side is showing consumption frequency grouped by location and date of Jan, while the right side one is by location and hour of the day. On the left side, users can switch the card type (credit or loyalty card). The boxplot below is designed to show transaction price of different locations.</p>
+<p>The heatmap on the left side is showing consumption frequency grouped by location and date of Jan, while the right side one is by location and hour of the day. On the left side, users can switch the card type (credit or loyalty card). The boxplot below is designed to show transaction price of different locations. Users can select card numbers, switch between weekday and weekend, or even select the exact days to customize the charts and explore on details.</p>
 <p><img src="images/df_t1.1eda.jpg" width="100%" /></p>
 </div>
 <div id="analysis-of-gps-tracking-data" class="section level3">
 <h3>Analysis of GPS tracking data</h3>
-<p>Car GPS movement path shown on the city map of Abila: The left plot represents different dates by colors, while the right one representing different time slot by different colors.</p>
+<p>Car GPS movement path shown on the city map of Abila: The left plot represents different dates by colors, while the right one representing different time slot by different colors. Users can explore on each car ID and date by selecting from the dropdown list on the left side. Besides, if hover the cursor over the layer logo on the right side map, users could filter shape layer for the target time slot to see the movement path of a specific time period clearly.</p>
 <p><img src="images/df_t2.1map.jpg" width="100%" /></p>
 <p>Houly heatmap of different car tracking data: By checking or unchecking “Weekday” and “Weekend” option, users can focus on different hourly moving frequency of each car.</p>
 <p><img src="images/df_t2.2hm.jpg" width="100%" /></p>

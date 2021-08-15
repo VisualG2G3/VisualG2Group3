@@ -17,23 +17,6 @@
     "input_file": "shinyapp.knit.md"
   },
   {
-    "path": "posts/2021-08-07-poster/",
-    "title": "Project Poster",
-    "description": "Poster of visualization and analysis for VAST Challenge 2021 Mini Challenge 2.",
-    "author": [
-      {
-        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
-        "url": "https://isss608vaag2group3.netlify.app/"
-      }
-    ],
-    "date": "2021-08-07",
-    "categories": [],
-    "contents": "\r\nThe project poster is designed and created using the Poster template of posterdown package. The link to the poster can be found here.\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2021-08-15T18:23:30+08:00",
-    "input_file": "poster.knit.md"
-  },
-  {
     "path": "posts/2021-08-07-practiceresearchpaper/",
     "title": "Practice Research Paper",
     "description": "The reseach paper of visualization and analysis on abnormal tracking and transactions.",
@@ -49,6 +32,23 @@
     "preview": {},
     "last_modified": "2021-08-15T18:33:12+08:00",
     "input_file": "practiceresearchpaper.knit.md"
+  },
+  {
+    "path": "posts/2021-08-07-poster/",
+    "title": "Project Poster",
+    "description": "Poster of visualization and analysis for VAST Challenge 2021 Mini Challenge 2.",
+    "author": [
+      {
+        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
+        "url": "https://isss608vaag2group3.netlify.app/"
+      }
+    ],
+    "date": "2021-08-07",
+    "categories": [],
+    "contents": "\r\nThe project poster is designed and created using the Poster template of posterdown package. The link to the poster can be found here.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-08-15T19:07:21+08:00",
+    "input_file": "poster.knit.md"
   },
   {
     "path": "posts/2021-08-04-user-guide/",
