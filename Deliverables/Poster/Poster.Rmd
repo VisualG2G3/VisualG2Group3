@@ -56,11 +56,11 @@ To identify the anomalies of transactions for credit cards and loyalty cards, we
 
 With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.  
 
-There are three key aspects in this interactive visualisation application,
-1.	Transactions exploration 
-2.	Gps Map
-3.	Ownership of car and cards
-4.  Transaction data table of credit and loyalty card
+<!-- There are three key aspects in this interactive visualisation application, -->
+<!-- 1.	Transactions exploration  -->
+<!-- 2.	Gps Map -->
+<!-- 3.	Ownership of car and cards -->
+<!-- 4.  Transaction data table of credit and loyalty card -->
 
 # Approaches
 
@@ -97,29 +97,29 @@ knitr::include_graphics("images/df_t2.2hm.jpg")
 
 ### Inference for the owners of cards
 
+Correspondence between car owner and credit card/loyalty card holder: The table summarized the corresponding relationships of GAStech staff, cars and credit/loyalty cards.
+
 ```{r out.width="100%"}
 knitr::include_graphics("images/df_t3.1om.jpg")
 ```
 
-Correspondence between car owner and credit card/loyalty card holder: The table summarized the corresponding relationships of GAStech staff, cars and credit/loyalty cards.
-
 # Insight
 
-### evening grouping on Jan 10
+### Evening grouping on Jan 10
 
 We check the tracking data of all the cars on Jan 10 and found that some of them came to the same places and stayed together for some time. The period they stayed is shown below the figure, most of them started from around 7 pm and ended at around 11 pm.
 
 We can see they are all Information Technology or Engineering employees, but not all employees of these two departments took part in that grouping. The assumption is that those have a good relationship in the two departments had these party in the home of one of them.
 
-```{r out.width="100%"}
+```{r out.width="90%",fig.align='center'}
 knitr::include_graphics("images/jan10grouping.png")
 ```
 
 ### Security gather around Executive's home
 
-According to the GPS path, we observe that some employees visit the same location at the mid-night and wee hours of on different date. The ids of these cars are 15, 16, 21 and 24. The location they go around is the home of the owner of car with id 4. Taking the owners of car into consideration, we can know that employees from Security department appear around the location of the house of Barranco, an executive of GAStech at the late night and wee hours from 6 Jan to 11 Jan. 
+According to the GPS path, we observe that some securities visit the same location at the mid-night and wee hours of on different date. The location they go around is the home of Barranco, an executive of GAStech.
 
-```{r out.width="100%"}
+```{r out.width="90%",fig.align='center'}
 knitr::include_graphics("images/security_1.png")
 ```
 
@@ -127,18 +127,8 @@ As the movement the security go around Barranco'home is so suspicious, we infer 
 
 # Future Work
 
-### further explore the geospatial data
+Some location recorded in transaction data cannot be found in the given picture and then cannot do further analysis. In the future maybe we can explore the previous work and try different ways to process the file and get those locations or find the locations directly.
 
-For Daily Dealz, there is only one transaction that happened at 6 am on Monday, Jan 13. And if we check the last 4 cc numbers, we can see that the owner of this card had a transaction that happened at 3 am in Kronos Mart on Sunday, Jan 19. Also, the amount is specially small (2.01).
-
-```{r out.width="100%"}
-knitr::include_graphics("images/dailydealztable.png")
-```
-
-We cannot find the place in the given picture and then cannot do further analysis. In the future maybe we can explore the previous work and try different ways to process the file and get those locations or find the locations directly.
-
-### owner inferrence
-
-when identify the owners of each credit card and loyalty card, we find that there exist a credit card that can match with two loyalty cards and a loyalty card that can match with two credit cards. For the multiple matching case, some potential unofficial relationships would be identified if further exploration could be done. Besides, the inference of owners of each credit card and loyalty card could be more detailed and accurate if the tracking of trucks could be taken into consideration.
+Also,we find that there exist a credit card that can match with two loyalty cards and a loyalty card that can match with two credit cards. Some potential unofficial relationships would be identified if further exploration could be done. Besides, the inference of owners of each credit card and loyalty card could be more detailed and accurate after we take the tracking data of trucks into consideration.
 
 
