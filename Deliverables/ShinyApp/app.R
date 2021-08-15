@@ -36,8 +36,8 @@ library(tidyverse)
 ## For Shiny
 car_ass <- read_csv("data/car-assignments.csv")
 gps <- readRDS("data/gps_rds") %>%
-    filter(as.character(id) %in% c("1","3","4","5","6","7","8","9","11","13","14","15","16",
-                     "18","19","20","21","22","24","25","28","33"))
+    filter(as.character(id) %in% c("1","3","4","5","6","7","8","9","11","13","14","16",
+                     "18","21","22","24","25","33"))
 cc <- read_csv("data/cc_data.csv",
                locale = locale(encoding = "windows-1252"))
 loyalty <- read_csv("data/loyalty_data.csv",
@@ -97,8 +97,8 @@ gps_sf <- st_as_sf(gps,
 
 ## Group by id and day
 gps_path <- gps_sf %>%
-    # filter(id %in% c("1","3","4","5","6","7","8","9","11","13","14","15","16",
-    #                  "18","19","20","21","22","24","25","28","33")) %>%
+    # filter(id %in% c("1","3","4","5","6","7","8","9","11","13","14","16",
+    #                  "18","21","22","24","25","33")) %>%
     dplyr::group_by(id, day) %>%
     dplyr::summarize(m = mean(Timestamp), 
                      do_union=FALSE) %>%
@@ -161,8 +161,8 @@ cbccloy <- left_join(cb_cc_loy, owner_match_ori,
            "Loyalty card num" = "loyaltynum", "Date (loyalty card)" = "date_new")
 
 #cbccloy$`Date (loyalty)` = dmy(cbccloy$`Date (loyalty)`)
-cbccloy$`Weekday (loyalty card)` = wday(cbccloy$`Date (loyalty card)`, label = T, abbr = T)
-cbccloy$`Weekday (credit card)` = wday(cbccloy$`Datatime (credit card)`, label = T, abbr = T)
+cbccloy$`Weekday (loyalty card)` = as.character(wday(cbccloy$`Date (loyalty card)`, label = T, abbr = T))
+cbccloy$`Weekday (credit card)` = as.character(wday(cbccloy$`Datatime (credit card)`, label = T, abbr = T))
 
 cbccloy <- cbccloy[c(2,3,4,1,9,5,6,8,7)]
 
@@ -379,8 +379,8 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                    conditionalPanel('input.GPSset === "GPS Movement Path"',
                                                                     pickerInput("cidt2", "Select a CarID",
                                                                                 # choices = car_id,
-                                                                                choices = c("1","3","4","5","6","7","8","9","11","13","14","15","16",
-                                                                                            "18","19","20","21","22","24","25","28","33"),
+                                                                                choices = c("1","3","4","5","6","7","8","9","11","13","14","16",
+                                                                                            "18","21","22","24","25","33"),
                                                                                 selected = "1",
                                                                                 options = list(`live-search` = TRUE,
                                                                                                size = 10)),
@@ -396,7 +396,7 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                    conditionalPanel('input.GPSset === "GPS Data Overview"',
                                                                     awesomeCheckboxGroup("wdayt2", "Select Weekday",
                                                                                          choices = c("Weekday", "Weekend"),
-                                                                                         selected = c("Weekday", "Weekend"),
+                                                                                         selected = "Weekend",
                                                                                          status = "secondary",
                                                                                          inline = T)
                                                    )
@@ -745,6 +745,10 @@ server <- function(input, output, session) {
     # ------Heatmap in tab2
     output$heatt2 <- renderPlotly({
         
+        # gps_sf <- filter(gps_sf, id %in% c("1","3","4","5","6","7","8","9","11","13","14","16",
+        #                                    "18","21","22","24","25","33")
+        #                      )
+        
         if(length(input$wdayt2) == 1) {
             
             if (c(input$wdayt2) == c("Weekend")){
@@ -766,8 +770,8 @@ server <- function(input, output, session) {
         #}
         
         hm_gps <- plot_ly(gps_sf_w, x = ~hour, y = ~factor(id, 
-                                                          levels = c("1","3","4","5","6","7","8","9","11","13","14","15","16",
-                                                                      "18","19","20","21","22","24","25","28","33")), #Car ID order
+                                                          levels = c("1","3","4","5","6","7","8","9","11","13","14","16",
+                                                                     "18","21","22","24","25","33")), #Car ID order
                           hovertemplate = paste(
                               " %{yaxis.title.text}: %{y}<br>",
                               "%{xaxis.title.text}: %{x}<br>",
@@ -807,6 +811,9 @@ server <- function(input, output, session) {
         gps_sf_temp <- gps_sf %>% 
             filter(id %in% s_carid)
         
+        if(empty(gps_sf_temp)) return(NULL)
+        
+        else{
         plot_ly(gps_sf_temp, x = ~day, y = ~hour,
                 hovertemplate = paste(
                     " %{yaxis.title.text}: %{y}<br>",
@@ -817,7 +824,7 @@ server <- function(input, output, session) {
             layout(title = "Heatmap of GPS tracking data of the selected car(s), hour by date",
                    xaxis = list(title = "Date", tickmode = "linear"),
                    yaxis = list(title="Hour", tickmode = "linear")
-            )
+            )}
         
     })
     
