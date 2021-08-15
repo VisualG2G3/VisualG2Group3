@@ -161,8 +161,8 @@ cbccloy <- left_join(cb_cc_loy, owner_match_ori,
            "Loyalty card num" = "loyaltynum", "Date (loyalty card)" = "date_new")
 
 #cbccloy$`Date (loyalty)` = dmy(cbccloy$`Date (loyalty)`)
-cbccloy$`Weekday (loyalty card)` = as.character(wday(cbccloy$`Date (loyalty card)`, label = T, abbr = T))
-cbccloy$`Weekday (credit card)` = as.character(wday(cbccloy$`Datatime (credit card)`, label = T, abbr = T))
+cbccloy$`Weekday (loyalty card)` = wday(cbccloy$`Date (loyalty card)`, label = T, abbr = T)
+cbccloy$`Weekday (credit card)` = wday(cbccloy$`Datatime (credit card)`, label = T, abbr = T)
 
 cbccloy <- cbccloy[c(2,3,4,1,9,5,6,8,7)]
 
