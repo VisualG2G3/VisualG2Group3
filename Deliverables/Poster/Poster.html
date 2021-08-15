@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+
+
+
+<title>Interactive Visualization for Exploring Abnormal Trajectories and Transactions of GAStech Employees</title>
+
+<script src="Poster_files/header-attrs-2.8/header-attrs.js"></script>
+
+
+
+
+<style>
+@page {
+size: 594mm 841mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 20pt;
+width: 594mm;
+height: 841mm;
+padding: 0;
+text-align: justify;
+font-family: Palatino;
+}
+.poster_wrap {
+width: 594mm;
+height: 841mm;
+padding: 0cm;
+}
+.title_container {
+width: 594mm;
+height: calc(841mm * 0.15);
+overflow: hidden;
+background-color: #0b4545;
+border: 0 solid #0b4545;
+}
+.logo_left {
+float: left;
+width: 10%;
+height: 100%;
+background-color: #0b4545;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.logo_right {
+float: right;
+width: 10%;
+height: 100%;
+background-color: #0b4545;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.poster_title {
+text-align: center;
+position: relative;
+float: left;
+width: 80%;
+height: 100%;
+color: #FFFFFF;
+top: 50%;
+transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+}
+#title {
+font-family: Palatino;
+}
+/* unvisited link */
+a:link {
+color: #cc0000;
+}
+.mybreak {
+  break-before: column;
+}
+/* visited link */
+a:visited {
+color: #cc0000;
+}
+
+/* mouse over link */
+a:hover {
+color: #cc0000;
+}
+
+/* selected link */
+a:active {
+color: #cc0000;
+}
+.poster_body {
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: 1mm;
+-moz-column-rule-width: 1mm;
+column-rule-width: 1mm;
+-webkit-column-rule-style: dashed;
+-moz-column-rule-style: dashed;
+column-rule-style: dashed;
+-webkit-column-rule-color: #0b4545;
+-moz-column-rule-color: #0b4545;
+column-rule-color: #0b4545;
+column-gap: 1em;
+padding-left: 0.5em;
+padding-right: 0.5em;
+height: 100%;
+color: #000000
+background-color: #ffffff;
+}
+.poster_title h1 {
+font-size: 62pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+width: calc(594mm + 0 + 0);
+height: calc(841mm * 0.83);
+padding-top: calc(841mm * 0.005);
+padding-bottom: calc(841mm * 0.01);
+background-color: #ffffff;
+}
+.poster_title h3 {
+color: #ffffff;
+font-size: 30pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_title h3 > sup {
+  font-size: 35pt;
+  margin-left: 0.02em;
+}
+.poster_title h5 {
+color: #FFFFFF;
+font-size: ;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+img {
+margin-top: 2cm;
+margin-bottom: 0;
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+text-align: center;
+color: #FFFFFF;
+font-size: 65pt;
+border: 2mm solid #0b4545;
+background-color: #0b4545;
+border-radius: 4mm 0mm;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: normal;
+}
+.poster_body h2 {
+color: #000000;
+font-size: 40pt;
+padding-left: 4mm;
+font-weight: normal;
+}
+.span {
+width: 200%;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 1em;
+font-family: monospace;
+background-color: #00808024;
+color: #0b4545;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+.poster_title code {
+font-size: 1em;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-right: 4mm;
+margin-left: 4mm;
+margin-top: 6mm;
+margin-bottom: 10mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+.references p {
+font-size: 20pt;
+}
+.orcid img {
+  width: 1em;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+<div class="title_container">
+<!-- Left Logo  -->
+<div class="logo_left">
+<img src= 'images/vastlogo.jpg' style="width: 80%">
+</div>
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Interactive Visualization for Exploring Abnormal Trajectories and Transactions of GAStech Employees</h1>
+<h3 id="author"><br>Dong Fang<sup></sup>, Yin Xiaolan<sup></sup>, Zhang Youzhen<sup></sup>, <br> Prof Kam Tin Seong (Mentor)<sup></sup></h3><br>
+<h5 id="affiliation"><sup></sup> School of Computing and Information Systems, Singapore Management University</h5>
+</div>
+<!-- Right Logo  -->
+<div class="logo_right">
+<img src=images/SMU.png style="width: 80%">
+</div>
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The IEEE Visual Analytics Science and Technology (VAST) Challenge is an annual contest of which the goal is to advance the field of visual analytics through the competition. The VAST Challenge is designed to help participators to understand how their analytic tools would be used in a novel analytic task and determine if their data transformations, visualizations and interactions would be beneficial for solving the challenges.</p>
+<p>2021 Mini Vast Challenge 2 presented the scenario: some Kronos-based employees of GAStech oil and gas company went missing. Car tracking data for the two weeks leading up to the disappearance, as well as credit card transactions and loyalty card usage data related to missing employees are provided. This challenge is concentrated on exploring the anomalies, recognizing the ownership of the cars and cards and identifying suspicious patterns of behaviours by analysing the movement and tracking data, as well as the transaction data.</p>
+<p>In this paper, we aim to leverage the richness of the movement and transactions data to provide an interactive visualisation for exploring suspicious behaviours of GAStech Employee and generating insights.</p>
+</div>
+<div id="motivation" class="section level1">
+<h1>Motivation</h1>
+<p>The task of Mini Challenge 2 is to explore anomalies and get meaningful insights based on the given dataset to help the investigation of the incident. As the tracking data provided here are geospatial data with aspatial information, a good way to present the movement information is to show the path on the map.</p>
+<p>To identify the anomalies of transactions for credit cards and loyalty cards, we need to compare the detailed transaction information including the location, date and price. Also, in order to identify the owners of cars and cards, looking at the tacking data for each car is inevitable. Instead of generating tracking for each car, an interactive visualisation application which allows user to select carID and timeslots they would look at is more efficient and helpful.</p>
+<p>With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.</p>
+<p>There are three key aspects in this interactive visualisation application,
+1. Transactions exploration
+2. Gps Map
+3. Ownership of car and cards
+4. Transaction data table of credit and loyalty card</p>
+</div>
+<div id="approaches" class="section level1">
+<h1>Approaches</h1>
+<ul>
+<li>Analysis of Kronos Incident dataset with background research</li>
+<li>Exploratory Data Analysis (EDA) methods in R</li>
+<li>Exploratory Spatial Data Analysis (ESDA) methods in R</li>
+<li>Clustering methods for aspatial and geospatial information in R</li>
+<li>R Markdown development for functionality checks</li>
+<li>R-Shiny app development for user interactivity</li>
+</ul>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<div id="eda-for-transaction-data-of-credit-and-loyalty-cards" class="section level3">
+<h3>EDA for transaction data of credit and loyalty cards</h3>
+<p>The heatmap on the left side is showing consumption frequency grouped by location and date of Jan, while the right side one is by location and hour of the day. On the left side, users can switch the card type (credit or loyalty card). The boxplot below is designed to show transaction price of different locations.</p>
+<p><img src="images/df_t1.1eda.jpg" width="100%" /></p>
+</div>
+<div id="analysis-of-gps-tracking-data" class="section level3">
+<h3>Analysis of GPS tracking data</h3>
+<p>Car GPS movement path shown on the city map of Abila: The left plot represents different dates by colors, while the right one representing different time slot by different colors.</p>
+<p><img src="images/df_t2.1map.jpg" width="100%" /></p>
+<p>Houly heatmap of different car tracking data: By checking or unchecking “Weekday” and “Weekend” option, users can focus on different hourly moving frequency of each car.</p>
+<p><img src="images/df_t2.2hm.jpg" width="100%" /></p>
+</div>
+<div id="inference-for-the-owners-of-cards" class="section level3">
+<h3>Inference for the owners of cards</h3>
+<p><img src="images/df_t3.1om.jpg" width="100%" /></p>
+<p>Correspondence between car owner and credit card/loyalty card holder: The table summarized the corresponding relationships of GAStech staff, cars and credit/loyalty cards.</p>
+</div>
+</div>
+<div id="insight" class="section level1">
+<h1>Insight</h1>
+<div id="evening-grouping-on-jan-10" class="section level3">
+<h3>evening grouping on Jan 10</h3>
+<p>We check the tracking data of all the cars on Jan 10 and found that some of them came to the same places and stayed together for some time. The period they stayed is shown below the figure, most of them started from around 7 pm and ended at around 11 pm.</p>
+<p>We can see they are all Information Technology or Engineering employees, but not all employees of these two departments took part in that grouping. The assumption is that those have a good relationship in the two departments had these party in the home of one of them.</p>
+<p><img src="images/jan10grouping.png" width="100%" /></p>
+</div>
+<div id="security-gather-around-executives-home" class="section level3">
+<h3>Security gather around Executive’s home</h3>
+<p>According to the GPS path, we observe that some employees visit the same location at the mid-night and wee hours of on different date. The ids of these cars are 15, 16, 21 and 24. The location they go around is the home of the owner of car with id 4. Taking the owners of car into consideration, we can know that employees from Security department appear around the location of the house of Barranco, an executive of GAStech at the late night and wee hours from 6 Jan to 11 Jan. </p>
+<p><img src="images/security_1.png" width="100%" /></p>
+<p>As the movement the security go around Barranco’home is so suspicious, we infer that the Security was monitor the executive’s behaviour after work from 6 Jan to 11 Jan.</p>
+</div>
+</div>
+<div id="future-work" class="section level1">
+<h1>Future Work</h1>
+<div id="further-explore-the-geospatial-data" class="section level3">
+<h3>further explore the geospatial data</h3>
+<p>For Daily Dealz, there is only one transaction that happened at 6 am on Monday, Jan 13. And if we check the last 4 cc numbers, we can see that the owner of this card had a transaction that happened at 3 am in Kronos Mart on Sunday, Jan 19. Also, the amount is specially small (2.01).</p>
+<p><img src="images/dailydealztable.png" width="100%" /></p>
+<p>We cannot find the place in the given picture and then cannot do further analysis. In the future maybe we can explore the previous work and try different ways to process the file and get those locations or find the locations directly.</p>
+</div>
+<div id="owner-inferrence" class="section level3">
+<h3>owner inferrence</h3>
+<p>when identify the owners of each credit card and loyalty card, we find that there exist a credit card that can match with two loyalty cards and a loyalty card that can match with two credit cards. For the multiple matching case, some potential unofficial relationships would be identified if further exploration could be done. Besides, the inference of owners of each credit card and loyalty card could be more detailed and accurate if the tracking of trucks could be taken into consideration.</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>
