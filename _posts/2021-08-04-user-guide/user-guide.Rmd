@@ -76,11 +76,9 @@ In the second tab: <br>
 
 [13] Hover cursor over plot area of chart F to see the car ID, hour and record count of each car in one hour.
 
-
-
 # 4. Owner Matching
 
-
+This panel is used to show the relationship between particular car owner and credit/loyalty card holder.
 
 # 5. Data
 
