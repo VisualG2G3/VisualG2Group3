@@ -76,7 +76,7 @@ knitr::include_graphics("images/df_t1.1eda.jpg")
 
 ### Analysis of GPS tracking data
 
-Car GPS movement path shown on the city map of Abila: The left plot represents different dates by colors, while the right one representing different time slot by different colors. Users can explore on each car ID and date by selecting from the dropdown list on the left side. Besides, if hover the cursor over the layer logo on the right side map, users could filter shape layer for the target time slot to see the movement path of a specific time period clearly.
+Car GPS movement path shown on the city map of Abila: The left plot represents different dates by colors, while the right one representing different time slot by different colors. Users can explore on each car ID and date by selecting from the dropdown list on the left side. Besides, if hover the cursor over the layer logo on the right side map, users could filter shape layer for the target time slot .
 
 ```{r out.width="100%"}
 knitr::include_graphics("images/df_t2.1map.jpg")
