@@ -36,7 +36,8 @@ library(tidyverse)
 ## For Shiny
 car_ass <- read_csv("data/car-assignments.csv")
 gps <- readRDS("data/gps_rds") %>%
-    filter(id < 100)
+    filter(as.character(id) %in% c("1","3","4","5","6","7","8","9","11","13","14","15","16",
+                     "18","19","20","21","22","24","25","28","33"))
 cc <- read_csv("data/cc_data.csv",
                locale = locale(encoding = "windows-1252"))
 loyalty <- read_csv("data/loyalty_data.csv",
@@ -96,6 +97,8 @@ gps_sf <- st_as_sf(gps,
 
 ## Group by id and day
 gps_path <- gps_sf %>%
+    # filter(id %in% c("1","3","4","5","6","7","8","9","11","13","14","15","16",
+    #                  "18","19","20","21","22","24","25","28","33")) %>%
     dplyr::group_by(id, day) %>%
     dplyr::summarize(m = mean(Timestamp), 
                      do_union=FALSE) %>%
@@ -106,10 +109,10 @@ gps_path2 <- cbind(gps_path, np) %>%
     dplyr::filter(np > 1) # exclude orphan coordinate records
 
 ## Car ID
-car_id <- as.character(sort(unique(c(as.integer(gps$id)))))
-# car_id <- c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
-#             "16","17","18","19","20","21","22","23","24","25","26","27","28",
-#             "29","30","31","32","33","34","35")
+# car_id <- as.character(sort(unique(c(as.integer(gps$id)))))
+car_id <- c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+            "16","17","18","19","20","21","22","23","24","25","26","27","28",
+            "29","30","31","32","33","34","35")
 
 # --------Join owner matching result between car assignment and cards number
 # owner_match_ori <- read_csv("Deliverables/ShinyApp/data/car-card-match.csv") %>%
@@ -375,9 +378,9 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                       sidebarPanel(width = 3, fluid = T,
                                                    conditionalPanel('input.GPSset === "GPS Movement Path"',
                                                                     pickerInput("cidt2", "Select a CarID",
-                                                                                choices = car_id,
-                                                                                # choices = c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
-                                                                                #             "16","17","18"),
+                                                                                # choices = car_id,
+                                                                                choices = c("1","3","4","5","6","7","8","9","11","13","14","15","16",
+                                                                                            "18","19","20","21","22","24","25","28","33"),
                                                                                 selected = "1",
                                                                                 options = list(`live-search` = TRUE,
                                                                                                size = 10)),
@@ -409,9 +412,12 @@ ui <- fluidPage(#shinythemes::themeSelector(),
                                                                                      h6(tags$i("Distinguish colors by date")),
                                                                                      tmapOutput("gps1",
                                                                                                 width = "100%",
-                                                                                                height = "650px"
-                                                                                     )
-                                                                     ),
+                                                                                                height = "650px"),
+                                                                                     hr(),
+                                                                                     p(tags$i("Note: As the Memory limitation of free Shiny App server, 
+                                                                                              after deploying, the Shiny APP can't afford displaying GPS movement lines for all cars. 
+                                                                                              Thus we select several typical car ID as key movement path for further exploration and analysis"))
+                                                                                     ),
                                                                      column(width = 6,
                                                                             h4("The GPS track of selected Car ID in specific date(s)"),
                                                                             h6(tags$i("Distinguish colors by timeslot")),
@@ -760,7 +766,8 @@ server <- function(input, output, session) {
         #}
         
         hm_gps <- plot_ly(gps_sf_w, x = ~hour, y = ~factor(id, 
-                                                          levels = c(car_id)), #Car ID order
+                                                          levels = c("1","3","4","5","6","7","8","9","11","13","14","15","16",
+                                                                      "18","19","20","21","22","24","25","28","33")), #Car ID order
                           hovertemplate = paste(
                               " %{yaxis.title.text}: %{y}<br>",
                               "%{xaxis.title.text}: %{x}<br>",
