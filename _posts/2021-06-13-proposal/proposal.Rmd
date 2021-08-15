@@ -67,8 +67,35 @@ _Fig. 1 The project timeline planned_
 
 # 6. Storyboard & Visualization Features
 
-To be edited after personal assignment complete.
+We plan to design 5 tabs in the R shiny project.
 
+**tab1: Introduction**
+
+We will include the introduction of the R Shiny project in this tab, briefly describe the content of the following 4 tabs.
+
+**tab2: EDA**
+
+This tab includes the heatmap and boxplot for transaction data for credit card and loyalty card.
+
+![](Image/prototype_tab1.jpg)
+
+**tab3: GPS**
+
+This tab includes the two gps tmap and one overview heatmap.
+
+![](Image/prototype_tab2_gps.jpg)
+
+![](Image/prototype_tab2_overview.jpg)
+
+**tab4: Owner Matching**
+
+This tab shows the owner matching result, the corresponding heatmap and line chart will appear when you click the row(S).
+
+![](Image/prototype_tab3.jpg)
+
+**tab5: Data**
+
+This tab presents the matched transaction data, one record will includes at least the car id, credit card number, time stamp (credit card), price (credit card), loyalty card number, time stamp (loyalty card), price (loyalty card).
 
 # 7. Software Tools
 

@@ -68,23 +68,6 @@
     "input_file": "user-guide.knit.md"
   },
   {
-    "path": "posts/2021-06-13-proposal/",
-    "title": "Interactive Visualization for Exploring Abnormal Tracking and Transaction of GAStech Employee",
-    "description": "Project Proposal of VAST Challenge 2021 Mini Challenge 2.",
-    "author": [
-      {
-        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
-        "url": "https://isss608vaag2group3.netlify.app/"
-      }
-    ],
-    "date": "2021-06-13",
-    "categories": [],
-    "contents": "\r\n\r\nContents\r\n1. Background\r\n2. Motivation\r\n3. Project objectives\r\n4. Proposed Scope and Methodology\r\n5. Project Timeline\r\n6. Storyboard & Visualization Features\r\n7. Software Tools\r\n8. Proposed R Packages\r\n\r\n1. Background\r\nThe IEEE Visual Analytics Science and Technology (VAST) Challenge is an annual contest with the goal of advancing the field of visual analytics through competition. The VAST Challenge is designed to help researchers understand how their software would be used in a novel analytic task and determine if their data transformations, visualizations, and interactions would be beneficial for particular analytic tasks. VAST Challenge 2021 is the so-called Kronos Incident in which several employees of a company named GAStech, located at the island of Kronos went missing. Mini-Challenge 2 aims to find unusual and suspicious behaviors of employees then to make contributions on investigation of the incident.\r\n2. Motivation\r\nThe task of Mini Challenge 2 is to explore anomalies and get meaningful insights to make recommendations for further investigation of the incident. The dataset used here combines geospatial data with aspatial information that allows us to apply geospatial regression techniques and geospatial clustering to understand nutrition and obesity at different geographic granularity.\r\nThe missing, conflicting, and imperfect data gives us chances to use exploratory data analysis techniques to discover patterns, spot anomalies, and check assumptions. We will attempt to link the geographic movement data and consumption data of employees’ credit card purchases and preferences together to provide actionable insights to the analysis.\r\n3. Project objectives\r\nThis project aims to deliver an R-Shiny application that provides:\r\nInteractive user interface design\r\nNutritional information interfaced with a visual chart representation\r\nClustering techniques through both aspatial and geospatial methods\r\nMeaningful and valid insights based on the dataset used\r\n4. Proposed Scope and Methodology\r\nAnalysis of Kronos Incident dataset with background research\r\nExploratory Data Analysis (EDA) methods in R\r\nExploratory Spatial Data Analysis (ESDA) methods in R\r\nClustering methods for aspatial and geospatial information in R\r\nR Markdown development for functionality checks\r\nR-Shiny app development for user interactivity\r\n5. Project Timeline\r\nFig. 1 The project timeline planned\r\n6. Storyboard & Visualization Features\r\nTo be edited after personal assignment complete.\r\n7. Software Tools\r\nGit hub: https://github.com/VisualG2G3/VisualG2Group3\r\nRStudio: https://rstudio.com/\r\n8. Proposed R Packages\r\nClustGeo: https://cran.r-project.org/web/packages/ClustGeo\r\nRColorBrewer: https://cran.r-project.org/web/packages/RColorBrewer\r\nshiny: https://shiny.rstudio.com\r\nshinythemes: https://cran.r-project.org/web/packages/shinythemes\r\nshinyWidgets: https://cran.r-project.org/web/packages/shinyWidgets\r\ntidyverse: https://www.tidyverse.org\r\ntmap: https://cran.r-project.org/web/packages/tmap\r\nsp: https://cran.r-project.org/web/packages/sp\r\nleaflet: https://cran.r-project.org/web/packages/leaflet\r\nplotly: https://cran.r-project.org/web/packages/plotly\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2021-08-04T18:00:14+08:00",
-    "input_file": {}
-  },
-  {
     "path": "posts/welcome/",
     "title": "Welcome to G2Group3 project",
     "description": "Welcome to our new blog, for VAA_G2_Group3 project. We hope you enjoy reading what we have to say!",
@@ -100,5 +83,22 @@
     "preview": {},
     "last_modified": "2021-06-20T21:26:26+08:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/2021-06-13-proposal/",
+    "title": "Interactive Visualization for Exploring Abnormal Tracking and Transaction of GAStech Employee",
+    "description": "Project Proposal of VAST Challenge 2021 Mini Challenge 2.",
+    "author": [
+      {
+        "name": "DONG Fang, YIN Xiaolan, ZHANG Youzhen",
+        "url": "https://isss608vaag2group3.netlify.app/"
+      }
+    ],
+    "date": "2021-06-13",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\n1. Background\r\n2. Motivation\r\n3. Project objectives\r\n4. Proposed Scope and Methodology\r\n5. Project Timeline\r\n6. Storyboard & Visualization Features\r\n7. Software Tools\r\n8. Proposed R Packages\r\n\r\n1. Background\r\nThe IEEE Visual Analytics Science and Technology (VAST) Challenge is an annual contest with the goal of advancing the field of visual analytics through competition. The VAST Challenge is designed to help researchers understand how their software would be used in a novel analytic task and determine if their data transformations, visualizations, and interactions would be beneficial for particular analytic tasks. VAST Challenge 2021 is the so-called Kronos Incident in which several employees of a company named GAStech, located at the island of Kronos went missing. Mini-Challenge 2 aims to find unusual and suspicious behaviors of employees then to make contributions on investigation of the incident.\r\n2. Motivation\r\nThe task of Mini Challenge 2 is to explore anomalies and get meaningful insights to make recommendations for further investigation of the incident. The dataset used here combines geospatial data with aspatial information that allows us to apply geospatial regression techniques and geospatial clustering to understand nutrition and obesity at different geographic granularity.\r\nThe missing, conflicting, and imperfect data gives us chances to use exploratory data analysis techniques to discover patterns, spot anomalies, and check assumptions. We will attempt to link the geographic movement data and consumption data of employees’ credit card purchases and preferences together to provide actionable insights to the analysis.\r\n3. Project objectives\r\nThis project aims to deliver an R-Shiny application that provides:\r\nInteractive user interface design\r\nNutritional information interfaced with a visual chart representation\r\nClustering techniques through both aspatial and geospatial methods\r\nMeaningful and valid insights based on the dataset used\r\n4. Proposed Scope and Methodology\r\nAnalysis of Kronos Incident dataset with background research\r\nExploratory Data Analysis (EDA) methods in R\r\nExploratory Spatial Data Analysis (ESDA) methods in R\r\nClustering methods for aspatial and geospatial information in R\r\nR Markdown development for functionality checks\r\nR-Shiny app development for user interactivity\r\n5. Project Timeline\r\nFig. 1 The project timeline planned\r\n6. Storyboard & Visualization Features\r\nWe plan to design 5 tabs in the R shiny project.\r\ntab1: Introduction\r\nWe will include the introduction of the R Shiny project in this tab, briefly describe the content of the following 4 tabs.\r\ntab2: EDA\r\nThis tab includes the heatmap and boxplot for transaction data for credit card and loyalty card.\r\n\r\ntab3: GPS\r\nThis tab includes the two gps tmap and one overview heatmap.\r\n\r\n\r\ntab4: Owner Matching\r\nThis tab shows the owner matching result, the corresponding heatmap and line chart will appear when you click the row(S).\r\n\r\ntab5: Data\r\nThis tab presents the matched transaction data, one record will includes at least the car id, credit card number, time stamp (credit card), price (credit card), loyalty card number, time stamp (loyalty card), price (loyalty card).\r\n7. Software Tools\r\nGit hub: https://github.com/VisualG2G3/VisualG2Group3\r\nRStudio: https://rstudio.com/\r\n8. Proposed R Packages\r\nClustGeo: https://cran.r-project.org/web/packages/ClustGeo\r\nRColorBrewer: https://cran.r-project.org/web/packages/RColorBrewer\r\nshiny: https://shiny.rstudio.com\r\nshinythemes: https://cran.r-project.org/web/packages/shinythemes\r\nshinyWidgets: https://cran.r-project.org/web/packages/shinyWidgets\r\ntidyverse: https://www.tidyverse.org\r\ntmap: https://cran.r-project.org/web/packages/tmap\r\nsp: https://cran.r-project.org/web/packages/sp\r\nleaflet: https://cran.r-project.org/web/packages/leaflet\r\nplotly: https://cran.r-project.org/web/packages/plotly\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-08-15T18:58:53+08:00",
+    "input_file": "proposal.knit.md"
   }
 ]

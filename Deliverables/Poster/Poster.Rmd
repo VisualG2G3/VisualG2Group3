@@ -56,18 +56,11 @@ To identify the anomalies of transactions for credit cards and loyalty cards, we
 
 With this application, we hope to provide an interactive experience to explore the disappearance of Kronos-based employees of GAStech by linking transactions and tracking data together.  
 
-<!-- There are three key aspects in this interactive visualisation application, -->
-<!-- 1.	Transactions exploration  -->
-<!-- 2.	Gps Map -->
-<!-- 3.	Ownership of car and cards -->
-<!-- 4.  Transaction data table of credit and loyalty card -->
-
 # Approaches
 
 * Analysis of Kronos Incident dataset with background research
 * Exploratory Data Analysis (EDA) methods in R
 * Exploratory Spatial Data Analysis (ESDA) methods in R
-* Clustering methods for aspatial and geospatial information in R
 * R Markdown development for functionality checks
 * R-Shiny app development for user interactivity
 
@@ -131,4 +124,7 @@ Some location recorded in transaction data cannot be found in the given picture 
 
 Also,we find that there exist a credit card that can match with two loyalty cards and a loyalty card that can match with two credit cards. Some potential unofficial relationships would be identified if further exploration could be done. Besides, the inference of owners of each credit card and loyalty card could be more detailed and accurate after we take the tracking data of trucks into consideration.
 
-
+```{r, echo=FALSE, eval=FALSE}
+library(pagedown)
+pagedown::chrome_print("Poster.html")
+```

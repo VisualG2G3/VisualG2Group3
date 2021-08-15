@@ -267,15 +267,19 @@ include_graphics("images/jan10grouping.png")
 
 We check the tracking data of all the cars on Jan 10 and found that some of them came to the same places and stayed together for some time. The period they stayed is shown below the figure, most of them started from around 7 pm and ended at around 11 pm.
 
+```{r fig.cap='Employee detail of those group together on Jan 10 evening', out.width="100%"}
+include_graphics("images/jan10groupingemployee.png")
+```
+
 We can see they are all Information Technology or Engineering employees, but not all employees of these two departments took part in that grouping. The assumption is that those have a good relationship in the two departments had these party in the home of one of them.
 
 ### Security gather around Executive's home
 
-According to the GPS path, we observe that some employees visit the same location at the mid-night and wee hours of on different date. The ids of these cars are 15, 16, 21 and 24. The location they go around is the home of the owner of car with id 4. Taking the owners of car into consideration, we can know that employees from Security department appear around the location of the house of Barranco, an executive of GAStech at the late night and wee hours from 6 Jan to 11 Jan. 
-
-```{r fig.cap="Location of Executive's home", out.width="80%"}
+```{r fig.cap="Location of Executive's home", out.width="100%"}
 include_graphics("images/security_0.png")
 ```
+
+According to the GPS path, we observe that some employees visit the same location at the mid-night and wee hours of on different date. The ids of these cars are 15, 16, 21 and 24. The location they go around is the home of the owner of car with id 4. Taking the owners of car into consideration, we can know that employees from Security department appear around the location of the house of Barranco, an executive of GAStech at the late night and wee hours from 6 Jan to 11 Jan. 
 
 ```{r fig.cap="Security gather around Executive's home", out.width="100%"}
 include_graphics("images/security_1.png")
